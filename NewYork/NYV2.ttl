@@ -1,0 +1,1095 @@
+@prefix hht: <https://w3id.org/HHT#> .
+@prefix oba: <http://www.semanticweb.org/melodi/types#> .
+@prefix obaData: <http://www.semanticweb.org/melodi/data#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+oba:State a hht:LevelVersion.
+
+oba:County a hht:LevelVersion.
+
+oba:City a hht:ElementaryLevelVersion.
+
+oba:Town a hht:ElementaryLevelVersion.
+
+oba:Village a hht:SubElementaryLevelVersion.
+
+oba:Borough a hht:SubElementaryLevelVersion.
+
+obaData:New_York__State a hht:Unit ;
+    hht:hasVersion obaData:New_York_State_V0.
+
+obaData:New_York__State_V0 a hht:UnitVersion;
+    hht:isMemberOf oba:State;
+    hht:validityPeriod oba:1788-1998;
+    hht:properContains obaData:New_York__County_V0, obaData:Westchester__County_V0, obaData:New_York__County_V1, obaData:New_York__County_V2, obaData:New_York__County_V3, obaData:Westchester__County_V1, obaData:Westchester__County_V2, obaData:Bronx__County_V0, obaData:Kings__County_V0, obaData:Queens__County_V0, obaData:Queens__County_V1, obaData:Richmond__County_V0, obaData:Richmond__County_V0;
+    hht:operativeContent [hht:unionOf _:declaredStateGeom, [a hht:NonVoidArea; hht:complementaryTo  _:declaredStateGeom; hht:complementaryWithRegardOf obaData:New_York__State_V0];
+    hht:operatorCardinality "2"].
+
+
+_:declaredStateGeom hht:unionOf obaData:New_York__County_V0, obaData:Westchester__County_V0, obaData:New_York__County_V1, obaData:New_York__County_V2, obaData:New_York__County_V3, obaData:Westchester__County_V1, obaData:Westchester__County_V2, obaData:Bronx__County_V0, obaData:Kings__County_V0, obaData:Queens__County_V0, obaData:Queens__County_V1, obaData:Richmond__County_V0, obaData:Richmond__County_V0;
+            hht:operatorCardinality "13". 
+
+obaData:New_York__County a hht:Unit ;
+    hht:hasVersion obaData:New_York__County_V0, obaData:New_York__County_V1,obaData:New_York__County_V2, obaData:New_York__County_V3.
+
+obaData:New_York__County_V0 a hht:UnitVersion;
+    hht:isMemberOf oba:County;
+    hht:validityPeriod oba:1788-1874;
+    hht:contains obaData:New_York_V0;
+    hht:operativeContent [hht:unionOf obaData:New_York_V0;
+    hht:operatorCardinality "1"].
+
+obaData:New_York__County_V1 a hht:UnitVersion;
+    hht:isMemberOf oba:County;
+    hht:validityPeriod oba:1874-1895;
+    hht:contains obaData:New_York_V1;
+    hht:operativeContent [hht:unionOf obaData:New_York_V1;
+    hht:operatorCardinality "1"].
+
+obaData:New_York__County_V2 a hht:UnitVersion;
+    hht:isMemberOf oba:County;
+    hht:validityPeriod oba:1895-1914;
+    hht:properContains obaData:Manhattan__Borough_V0, obaData:Bronx__Borough_V0;
+    hht:operativeContent [hht:unionOf obaData:Manhattan__Borough_V0, obaData:Bronx__Borough_V0;
+    hht:operatorCardinality "2"].
+
+obaData:New_York__County_V3 a hht:UnitVersion;
+    hht:isMemberOf oba:County;
+    hht:validityPeriod oba:1914-1998;
+    hht:contains obaData:Manhattan__Borough_V0;
+    hht:operativeContent [hht:unionOf obaData:Manhattan__Borough_V0;
+    hht:operatorCardinality "1"].
+
+
+
+obaData:Manhattan__Borough a hht:Unit ;
+    hht:hasVersion obaData:Manhattan__Borough_V0.
+
+obaData:Manhattan__Borough_V0 a hht:UnitVersion;
+    hht:isMemberOf oba:Borough;
+    hht:validityPeriod oba:1898-1998;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Manhattan;
+    hht:operatorCardinality "1"].
+
+obaData:New_York a hht:Unit ;
+    hht:hasVersion obaData:New_York_V0,obaData:New_York_V1, obaData:New_York_V2, obaData:New_York_V3.
+
+obaData:New_York_V0 a hht:UnitVersion;
+    hht:isMemberOf oba:City;
+    hht:validityPeriod oba:1788-1874;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Manhattan;
+    hht:operatorCardinality "1"].
+
+obaData:New_York_V1 a hht:UnitVersion;
+    hht:isMemberOf oba:City;
+    hht:validityPeriod oba:1874-1895;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Manhattan, _:BB_Kingsbridge, _:BB_Morrisania, _:BB_West_Farms;
+    hht:operatorCardinality "4"].
+
+
+obaData:New_York_V2 a hht:UnitVersion;
+    hht:isMemberOf oba:City;
+    hht:validityPeriod oba:1895-1898;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Manhattan, _:BB_Kingsbridge, _:BB_Morrisania, _:BB_West_Farms, _:BB_Westchester, _:BB_Eastchester, _:BB_Pelham_S;
+    hht:operatorCardinality "6"].
+
+obaData:New_York_V3 a hht:UnitVersion;
+    hht:isMemberOf oba:City;
+    hht:validityPeriod oba:1898-1998 ;
+    hht:properContains obaData:Queens__Borough_V0, obaData:Bronx__Borough_V0, obaData:Manhattan__Borough_V0, obaData:Staten_Island__Borough_V1, obaData:Richmond__Borough_V0, obaData:Brooklyn__Borough_V0;
+    hht:operativeContent [hht:unionOf obaData:Queens__Borough_V0, obaData:Bronx__Borough_V0, obaData:Manhattan__Borough_V0, obaData:Staten_Island__Borough_V1, obaData:Richmond__Borough_V0, obaData:Brooklyn__Borough_V0;
+    hht:operatorCardinality "6"].
+
+
+
+
+
+
+
+################################################## BRONX ################################################
+obaData:Bronx__Borough a hht:Unit ;
+    hht:hasVersion obaData:Bronx__Borough_V0.
+
+obaData:Bronx__Borough_V0 a hht:UnitVersion;
+    hht:isMemberOf oba:Borough;
+    hht:validityPeriod oba:1898-1998;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Kingsbridge, _:BB_Morrisania, _:BB_West_Farms, _:BB_Westchester, _:BB_Eastchester, _:BB_Pelham_S;
+    hht:operatorCardinality "5"].
+
+
+obaData:Westchester__County a hht:Unit ;
+    hht:hasVersion obaData:Westchester__County_V0,  obaData:Westchester__County_V1,  obaData:Westchester__County_V2.
+
+obaData:Westchester__County_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1874;
+    hht:isMemberOf oba:County;
+    hht:properContains obaData:Westchester_V0, obaData:Westchester_V1, obaData:Westchester_V2,
+    obaData:Yonkers_V0, obaData:Yonkers_V1,
+    obaData:Eastchester_V0, obaData:Pelham_V0,
+    obaData:Kingsbridge_V0, obaData:West_Farms_V0, obaData:Morrisania_V0;
+    hht:operativeContent [hht:unionOf _:declaredWestchester1Geom, [ hht:complementaryTo  _:declaredWestchester1Geom; hht:complementaryWithRegardOf obaData:Westchester__County_V0];
+    hht:operatorCardinality "2"].
+
+_:declaredWestchester1Geom hht:unionOf obaData:Westchester_V0, obaData:Westchester_V1, obaData:Westchester_V2,
+    obaData:Yonkers_V0, obaData:Yonkers_V1,
+    obaData:Eastchester_V0, obaData:Pelham_V0,
+    obaData:Kingsbridge_V0, obaData:West_Farms_V0, obaData:Morrisania_V0;
+    hht:operatorCardinality "10".
+
+obaData:Westchester__County_V1 a hht:UnitVersion;
+    hht:validityPeriod oba:1874-1895;
+    hht:isMemberOf oba:County;
+    hht:properContains obaData:Westchester_V2, obaData:Yonkers_V1, obaData:Eastchester_V0, obaData:Pelham_V0;
+    hht:operativeContent [hht:unionOf _:declaredWestchester2Geom, [hht:complementaryTo  _:declaredWestchester2Geom; hht:complementaryWithRegardOf obaData:Westchester__County_V1];
+    hht:operatorCardinality "2"].
+
+
+    _:declaredWestchester2Geom hht:unionOf obaData:Westchester_V2, obaData:Yonkers_V1, obaData:Eastchester_V0, obaData:Pelham_V0;
+    hht:operatorCardinality "4".
+
+obaData:Westchester__County_V2 a hht:UnitVersion;
+    hht:validityPeriod oba:1895-1998;
+    hht:isMemberOf oba:County;
+    hht:properContains obaData:Yonkers_V1, obaData:Mount_Vernon_V0, obaData:Pelham_V1;
+    hht:operativeContent [hht:unionOf _:declaredWestchester3Geom, [hht:complementaryTo  _:declaredWestchester3Geom; hht:complementaryWithRegardOf obaData:Westchester__County_V2];
+    hht:operatorCardinality "2"].
+
+    _:declaredWestchester3Geom hht:unionOf obaData:Yonkers_V1, obaData:Mount_Vernon_V0, obaData:Pelham_V1;
+    hht:operatorCardinality "3".
+
+
+obaData:Bronx__County a hht:Unit ;
+    hht:hasVersion obaData:Bronx__County_V0.
+
+obaData:Bronx__County_V0 a hht:UnitVersion;
+    hht:isMemberOf oba:County;
+    hht:validityPeriod oba:1914-1998;
+    hht:contains obaData:Bronx__Borough_V0;
+    hht:operativeContent [hht:unionOf obaData:Bronx__Borough_V0;
+    hht:operatorCardinality "1"].
+
+obaData:Westchester a hht:Unit ;
+    hht:hasVersion obaData:Westchester_V0, obaData:Westchester_V1, obaData:Westchester_V2.
+
+obaData:Westchester_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1846;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Morrisania, _:BB_West_Farms, _:BB_Westchester;
+    hht:operatorCardinality "3"].
+
+obaData:Westchester_V1 a hht:UnitVersion;
+    hht:validityPeriod oba:1846-1855;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Morrisania, _:BB_Westchester;
+    hht:operatorCardinality "2"].
+
+obaData:Westchester_V2 a hht:UnitVersion;
+    hht:validityPeriod oba:1855-1898;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Westchester;
+    hht:operatorCardinality "1"].
+
+
+obaData:West_Farms a hht:Unit ;
+    hht:hasVersion obaData:West_Farms_V0.
+
+obaData:West_Farms_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1846-1874;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_West_Farms;
+    hht:operatorCardinality "1"].
+
+obaData:Morrisania a hht:Unit ;
+    hht:hasVersion obaData:Morrisania_V0.
+
+obaData:Morrisania_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1855-1874;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Morrisania;
+    hht:operatorCardinality "1"].
+
+
+
+obaData:Yonkers a hht:Unit ;
+    hht:hasVersion obaData:Yonkers_V0, obaData:Yonkers_V1.
+
+obaData:Yonkers_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1873;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Yonkers, _:BB_Kingsbridge;
+    hht:operatorCardinality "2"].
+
+obaData:Yonkers_V1 a hht:UnitVersion;
+    hht:validityPeriod oba:1873-1998;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Yonkers;
+    hht:operatorCardinality "1"].
+
+
+
+obaData:Kingsbridge a hht:Unit ;
+    hht:hasVersion obaData:Kingsbridge_V0.
+
+obaData:Kingsbridge_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1873-1898;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Kingsbridge;
+    hht:operatorCardinality "1"].
+
+
+
+
+
+obaData:Eastchester a hht:Unit ;
+    hht:hasVersion obaData:Eastchester_V0.
+
+obaData:Eastchester_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1898;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Eastchester, _:BB_Mount_Vernon;
+    hht:operatorCardinality "2"].
+
+obaData:Mount_Vernon a hht:Unit ;
+    hht:hasVersion obaData:Mount_Vernon_V0.
+
+obaData:Mount_Vernon_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1898-1998;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Mount_Vernon;
+    hht:operatorCardinality "1"].
+
+
+
+obaData:Pelham a hht:Unit ;
+    hht:hasVersion obaData:Pelham_V0, obaData:Pelham_V1.
+
+obaData:Pelham_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1898;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Pelham_S, _:BB_Pelham_N;
+    hht:operatorCardinality "2"].
+
+obaData:Pelham_V1 a hht:UnitVersion;
+    hht:validityPeriod oba:1898-1998;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Pelham_N;
+    hht:operatorCardinality "1"].
+
+
+
+
+
+
+############################### Brooklyn ##################################
+
+obaData:Kings__County a hht:Unit ;
+    hht:hasVersion obaData:Brooklyn__County_V0.
+
+obaData:Kings__County_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1998;
+    hht:isMemberOf oba:County;
+    hht:contains obaData:Brooklyn__Borough_V0;
+    hht:properContains obaData:Brooklyn_V0, obaData:Brooklyn_V2, obaData:Brooklyn_V3, obaData:Brooklyn_V4, obaData:Brooklyn_V5, obaData:Brooklyn_V6,
+    obaData:Bushwick_V0, obaData:Bushwick_V1, obaData:Flatbush_V0,obaData:Flatbush_V1, obaData:New_Lots_V0, obaData:New_Utrecht_V0, obaData:Gravesend_V0, obaData:Flatlands_V0;
+    hht:operativeContent [hht:unionOf obaData:obaData:Brooklyn_V0, obaData:Brooklyn_V2, obaData:Brooklyn_V3, obaData:Brooklyn_V4, obaData:Brooklyn_V5, obaData:Brooklyn_V6,
+    obaData:Bushwick_V0, obaData:Bushwick_V1, obaData:Flatbush_V0,obaData:Flatbush_V1, obaData:New_Lots_V0, obaData:New_Utrecht_V0, obaData:Gravesend_V0, obaData:Flatlands_V0,obaData:Brooklyn__Borough_V0;
+    hht:operatorCardinality "15"].
+
+
+obaData:Brooklyn__Borough a hht:Unit ;
+    hht:hasVersion obaData:Brooklyn__Borough_V0.
+
+obaData:Brooklyn__Borough_V0 a hht:UnitVersion;
+    hht:isMemberOf oba:Borough;
+    hht:validityPeriod oba:1898-1998;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_BrooklynComplementary, _:BB_Brooklyn, _:BB_Williamsburgh, _:BB_Bushwick, _:BB_New_Utrecht, _:BB_Gravesend, _:BB_Flatbush, _:BB_Flatlands; 
+    hht:operatorCardinality "9"].
+
+
+obaData:Brooklyn__Village a hht:Unit ;
+    hht:hasVersion obaData:Brooklyn__Village_V0.
+
+obaData:Brooklyn__Village_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1816-1834;
+    hht:isMemberOf oba:Village;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Brooklyn;
+    hht:operatorCardinality "1"].
+
+
+obaData:Brooklyn a hht:Unit ;
+    hht:hasVersion obaData:Brooklyn_V0, obaData:Brooklyn_V2, obaData:Brooklyn_V3, obaData:Brooklyn_V4, obaData:Brooklyn_V5, obaData:Brooklyn_V6.
+
+obaData:Brooklyn_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1834;
+    hht:isMemberOf oba:Town;
+    hht:properContains obaData:Brooklyn__Village_V0;
+    hht:operativeContent [hht:unionOf obaData:Brooklyn__Village, _:BrooklynComplementary;
+    hht:operatorCardinality "2"].
+
+_:BrooklynComplementary a hht:NonVoidArea; hht:complementaryTo obaData:Brooklyn__Village; hht:complementaryWithRegardOf _:Brooklyn_V0; hht:hasGeometry _:BB_BrooklynComplementary.
+
+obaData:Brooklyn_V2 a hht:UnitVersion;
+    hht:validityPeriod oba:1834-1854;
+    hht:isMemberOf oba:City;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_BrooklynComplementary, _:BB_Brooklyn;
+    hht:operatorCardinality "2"].
+
+obaData:Brooklyn_V3 a hht:UnitVersion;
+    hht:validityPeriod oba:1854-1886;
+    hht:isMemberOf oba:City;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_BrooklynComplementary, _:BB_Brooklyn, _:BB_Williamsburgh, _:BB_Bushwick;
+    hht:operatorCardinality "4"].
+
+obaData:Brooklyn_V4 a hht:UnitVersion;
+    hht:validityPeriod oba:1886-1894;
+    hht:isMemberOf oba:City;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_BrooklynComplementary, _:BB_Brooklyn, _:BB_Williamsburgh, _:BB_Bushwick, _:BB_New_Lots;
+    hht:operatorCardinality "5"].
+
+obaData:Brooklyn_V5 a hht:UnitVersion;
+    hht:validityPeriod oba:1884-1896;
+    hht:isMemberOf oba:City;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_BrooklynComplementary, _:BB_Brooklyn, _:BB_Williamsburg, _:BB_Bushwick, _:BB_New_Utrecht, _:BB_Gravesend, _:BB_Flatbush;
+    hht:operatorCardinality "8"].
+
+obaData:Brooklyn_V6 a hht:UnitVersion;
+    hht:validityPeriod oba:1896-1898;
+    hht:isMemberOf oba:City;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_BrooklynComplementary, _:BB_Brooklyn, _:BB_Williamsburgh, _:BB_Bushwick, _:BB_New_Utrecht, _:BB_Gravesend, _:BB_Flatbush, _:BB_Flatlands; 
+    hht:operatorCardinality "9"].
+
+
+obaData:Bushwick a hht:Unit ;
+    hht:hasVersion obaData:Bushwick_V0, obaData:Bushwick_V1.
+
+obaData:Bushwick_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1840;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent  _:BB_Williamsburgh, _:BB_Bushwick;
+    hht:operatorCardinality "2"].
+
+obaData:Bushwick_V1 a hht:UnitVersion;
+    hht:validityPeriod oba:1840-1854;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Bushwick;
+    hht:operatorCardinality "1"].
+
+
+
+
+obaData:Williamsburgh a hht:Unit ;
+    hht:hasVersion obaData:Williamsburgh_V0, obaData:Williamsburgh_V1.
+
+obaData:Williamsburgh_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1840-1851;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent  _:BB_Williamsburgh;
+    hht:operatorCardinality "1"].
+
+obaData:Williamsburgh_V1 a hht:UnitVersion;
+    hht:validityPeriod oba:1851-1854;
+    hht:isMemberOf oba:City;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Williamsburgh;
+    hht:operatorCardinality "1"].
+
+
+
+
+obaData:Flatbush a hht:Unit ;
+    hht:hasVersion obaData:Flatbush_V0,obaData:Flatbush_V1.
+
+obaData:Flatbush_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1852;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent  _:BB_Flatbush, _:BB_New_Lots;
+    hht:operatorCardinality "2"].
+
+obaData:Flatbush_V1 a hht:UnitVersion;
+    hht:validityPeriod oba:1852-1894;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent  _:BB_Flatbush;
+    hht:operatorCardinality "1"].
+
+
+
+
+obaData:New_Lots a hht:Unit ;
+    hht:hasVersion obaData:New_Lots_V0.
+
+obaData:New_Lots_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1852-1886;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_New_Lots;
+    hht:operatorCardinality "1"].
+
+
+
+
+obaData:New_Utrecht a hht:Unit ;
+    hht:hasVersion obaData:New_Utrecht_V0.
+
+obaData:New_Utrecht_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1894;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_New_Utrecht;
+    hht:operatorCardinality "1"].
+
+
+
+
+obaData:Gravesend a hht:Unit ;
+    hht:hasVersion obaData:Gravesend_V0.
+
+obaData:Gravesend_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1894;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Gravesend;
+    hht:operatorCardinality "1"].
+
+
+
+obaData:Flatlands a hht:Unit ;
+    hht:hasVersion obaData:Flatlands_V0.
+
+obaData:Flatlands_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1896;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Flatlands;
+    hht:operatorCardinality "1"].
+
+
+
+
+
+#####################################################Queens####################################################################
+
+
+obaData:Queens__County a hht:Unit ;
+    hht:hasVersion obaData:Queens__County_V0, obaData:Queens__County_V1.
+
+obaData:Queens__County_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1899;
+    hht:isMemberOf oba:County;
+    hht:properContains obaData:Queens__Borough_V0, obaData:Newtown_V0,obaData:Newtown_V1, obaData:Long_Island_City_V0, obaData:Hempstead_V0, obaData:Hempstead_V1, obaData:Flushing_V0, obaData:Jamaica_V0;
+    hht:operativeContent [hht:unionOf _:declaredQueensCounty, _:complentaryQueens; hht:operatorCardinality "2"].
+
+
+_:declaredQueensCounty hht:unionOf obaData:Queens__Borough_V0, obaData:Newtown_V0,obaData:Newtown_V1, obaData:Long_Island_City_V0, obaData:Hempstead_V0, obaData:Hempstead_V1, obaData:Flushing_V0, obaData:Jamaica_V0;
+                        hht:operatorCardinality "8".
+
+_:complentaryQueens a hht:NonVoidArea; hht:complementaryWithRegardOf obaData:Queens__County_V0; hht:complementaryTo _:declaredQueensCounty.
+
+obaData:Queens__County_V1 a hht:UnitVersion;
+    hht:validityPeriod oba:1899-1998;
+    hht:isMemberOf oba:County;
+    hht:contains obaData:Queens__Borough_V0;
+    hht:operativeContent [hht:unionOf obaData:Queens__Borough_V0; hht:operatorCardinality "1"].
+
+
+obaData:Nassau__County a hht:Unit ;
+    hht:hasVersion obaData:Nassau__County_V0.
+
+obaData:Nassau__County_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1899-1998;
+    hht:isMemberOf oba:County;
+    hht:properContains obaData:Hempstead_V1;
+    hht:operativeContent [hht:unionOf _:declaredQueensCounty, obaData:Hempstead_V1; hht:operatorCardinality "2"].
+
+
+obaData:Queens__Borough a hht:Unit ;
+    hht:hasVersion obaData:Queens__Borough_V0.
+
+obaData:Queens__Borough_V0 a hht:UnitVersion;
+    hht:isMemberOf oba:Borough;
+    hht:validityPeriod oba:1898-1998;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Newtown, _:BB_Long_Island_City, _:BB_Rockaway_Peninsula, _:BB_Flushing, _:BB_Jamaica;
+                        hht:operatorCardinality "5"].
+
+
+obaData:Newtown a hht:Unit ;
+    hht:hasVersion obaData:Newtown_V0,obaData:Newtown_V1.
+
+obaData:Newtown_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1870;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Newtown, _:BB_Long_Island_City;
+                        hht:operatorCardinality "2"].
+
+obaData:Newtown_V1 a hht:UnitVersion;
+    hht:validityPeriod oba:1870-1898;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Newtown;
+                        hht:operatorCardinality "1"].
+
+
+
+obaData:Long_Island_City a hht:Unit ;
+    hht:hasVersion obaData:Long_Island_City_V0.
+
+obaData:Long_Island_City_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1870-1898;
+    hht:isMemberOf oba:City;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Long_Island_City;
+                        hht:operatorCardinality "1"].
+
+
+obaData:Flushing a hht:Unit ;
+    hht:hasVersion obaData:Flushing_V0.
+
+obaData:Flushing_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1898;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Flushing;
+                        hht:operatorCardinality "1"].
+
+
+obaData:Jamaica a hht:Unit ;
+    hht:hasVersion obaData:Jamaica_V0.
+
+obaData:Jamaica_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1898;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Jamaica;
+                        hht:operatorCardinality "1"].
+
+obaData:Hempstead a hht:Unit ;
+    hht:hasVersion obaData:Hempstead_V0, obaData:Hempstead_V1.
+
+obaData:Hempstead_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1898;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Hempstead, _:BB_Rockaway_Peninsula;
+                        hht:operatorCardinality "2"].
+
+obaData:Hempstead_V1 a hht:UnitVersion;
+    hht:validityPeriod oba:1898-1998;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Hempstead;
+                        hht:operatorCardinality "1"].
+
+############################################################# Staten Island #####################################################################
+
+
+obaData:Staten_Island__Borough a hht:Unit ;
+    hht:hasVersion obaData:Richmond__Borough_V0,obaData:Staten_Island__Borough_V1.
+
+obaData:Richmond__Borough_V0 a hht:UnitVersion;
+    hht:isMemberOf oba:Borough;
+    hht:validityPeriod oba:1898-1975;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_New_Brighton, _:BB_NewBrigthonComplementary, _:BB_Middletown_N, _:BB_Middletown_S, _:BB_Southfield, _:BB_Westfield, _:BB_Northfield; hht:operatorCardinality "7"].
+
+obaData:Staten_Island__Borough_V1 a hht:UnitVersion;
+    hht:isMemberOf oba:Borough;
+    hht:validityPeriod oba:1975-1998;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_New_Brighton, _:BB_NewBrigthonComplementary, _:BB_Middletown_N, _:BB_Middletown_S, _:BB_Southfield, _:BB_Westfield, _:BB_Northfield; hht:operatorCardinality "7"].
+
+obaData:Richmond__County a hht:Unit ;
+    hht:hasVersion obaData:Richmond__County_V0.
+
+obaData:Richmond__County_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1998;
+    hht:isMemberOf oba:County;
+    hht:contains obaData:Richmond__Borough_V0, obaData:Staten_Island__Borough_V1;
+    hht:properContains obaData:Westfield_V0, obaData:Northfield_V0, obaData:Southfield_V0,obaData:Southfield_V1, obaData:Middletown_V0, obaData:Castleton_V0,obaData:Castleton_V1;
+    hht:operativeContent [hht:unionOf  obaData:Westfield_V0, obaData:Northfield_V0, obaData:Southfield_V0,obaData:Southfield_V1, obaData:Middletown_V0, obaData:Castleton_V0,obaData:Castleton_V1, obaData:Richmond__Borough_V0, obaData:Staten_Island__Borough_V1;
+                        hht:operatorCardinality "9"].
+
+obaData:Westfield a hht:Unit ;
+    hht:hasVersion obaData:Westfield_V0.
+
+obaData:Westfield_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1898;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Westfield;
+                        hht:operatorCardinality "1"].
+
+
+obaData:Northfield a hht:Unit ;
+    hht:hasVersion obaData:Northfield_V0.
+
+obaData:Northfield_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1898;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Northfield;
+                        hht:operatorCardinality "1"].
+
+obaData:Southfield a hht:Unit ;
+    hht:hasVersion obaData:Southfield_V0,obaData:Southfield_V1.
+
+obaData:Southfield_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1860;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Southfield, _:BB_Middletown_S;
+                        hht:operatorCardinality "2"].
+
+obaData:Southfield_V1 a hht:UnitVersion;
+    hht:validityPeriod oba:1860-1898;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Southfield;
+                        hht:operatorCardinality "1"].
+
+obaData:Middletown a hht:Unit ;
+    hht:hasVersion obaData:Middletown_V0.
+
+obaData:Middletown_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1860-1898;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Middletown_N, _:BB_Middletown_S;
+                        hht:operatorCardinality "2"].
+
+obaData:Castleton a hht:Unit ;
+    hht:hasVersion obaData:Castleton_V0,obaData:Castleton_V1.
+
+obaData:Castleton_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1788-1860;
+    hht:isMemberOf oba:Town;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_Middletown_N, _:BB_New_Brighton, _:BB_NewBrigthonComplementary;
+                        hht:operatorCardinality "3"].
+
+obaData:Castleton_V1 a hht:UnitVersion;
+    hht:validityPeriod oba:1860-1898;
+    hht:isMemberOf oba:Town;
+    hht:contains obaData:New_Brighton_V1;
+    hht:properContains obaData:New_Brighton_V0;
+    hht:operativeContent [hht:unionOf obaData:New_Brighton_V0,obaData:New_Brighton_V1, _:NewBrigthonComplementary;
+                        hht:operatorCardinality "2"].
+
+
+
+obaData:New_Brighton a hht:Unit ;
+    hht:hasVersion obaData:New_Brighton_V0,obaData:New_Brighton_V1.
+
+obaData:New_Brighton_V0 a hht:UnitVersion;
+    hht:validityPeriod oba:1866-1872;
+    hht:isMemberOf oba:Village;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_New_Brighton;
+                        hht:operatorCardinality "2"].
+
+obaData:New_Brighton_V1 a hht:UnitVersion;
+    hht:validityPeriod oba:1872-1898;
+    hht:isMemberOf oba:Village;
+    hht:hasOperativeGeometry [hht:hasComponent _:BB_New_Brighton, _:NewBrigthonComplementary;
+                        hht:operatorCardinality "2"].
+
+_:NewBrigthonComplementary a hht:NonVoidArea; hht:complementaryTo _:New_Brighton_V0; hht:complementaryWithRegardOf obaData:Castleton_V1; hht:hasGeometry _:BB_NewBrightonComplementary.
+
+################################################################################################################################################
+
+    oba:1788-1998 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1998.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1998 time:inXSDgYear "1998"^^xsd:gYear.
+
+    oba:1788-1874 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1874.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1874 time:inXSDgYear "1874"^^xsd:gYear.
+
+    oba:1874-1895 time:hasBeginning oba:year1874;
+time:hasEnd oba:year1895.
+
+oba:year1874 time:inXSDgYear "1874"^^xsd:gYear.
+oba:year1895 time:inXSDgYear "1895"^^xsd:gYear.
+
+    oba:1895-1914 time:hasBeginning oba:year1895;
+time:hasEnd oba:year1914.
+
+oba:year1895 time:inXSDgYear "1895"^^xsd:gYear.
+oba:year1914 time:inXSDgYear "1914"^^xsd:gYear.
+
+    oba:1914-1998 time:hasBeginning oba:year1914;
+time:hasEnd oba:year1998.
+
+oba:year1914 time:inXSDgYear "1914"^^xsd:gYear.
+oba:year1998 time:inXSDgYear "1998"^^xsd:gYear.
+
+    oba:1898-1998 time:hasBeginning oba:year1898;
+time:hasEnd oba:year1998.
+
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+oba:year1998 time:inXSDgYear "1998"^^xsd:gYear.
+
+    oba:1788-1874 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1874.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1874 time:inXSDgYear "1874"^^xsd:gYear.
+
+    oba:1874-1895 time:hasBeginning oba:year1874;
+time:hasEnd oba:year1895.
+
+oba:year1874 time:inXSDgYear "1874"^^xsd:gYear.
+oba:year1895 time:inXSDgYear "1895"^^xsd:gYear.
+
+    oba:1895-1898 time:hasBeginning oba:year1895;
+time:hasEnd oba:year1898.
+
+oba:year1895 time:inXSDgYear "1895"^^xsd:gYear.
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+
+    oba:1898-1998 time:hasBeginning oba:year1898;
+time:hasEnd oba:year1998.
+
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+oba:year1998 time:inXSDgYear "1998"^^xsd:gYear.
+ 
+    oba:1898-1998 time:hasBeginning oba:year1898;
+time:hasEnd oba:year1998.
+
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+oba:year1998 time:inXSDgYear "1998"^^xsd:gYear.
+
+    oba:1788-1874 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1874.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1874 time:inXSDgYear "1874"^^xsd:gYear.
+
+    oba:1874-1895 time:hasBeginning oba:year1874;
+time:hasEnd oba:year1895.
+
+oba:year1874 time:inXSDgYear "1874"^^xsd:gYear.
+oba:year1895 time:inXSDgYear "1895"^^xsd:gYear.
+
+    oba:1895-1998 time:hasBeginning oba:year1895;
+time:hasEnd oba:year1998.
+
+oba:year1895 time:inXSDgYear "1895"^^xsd:gYear.
+oba:year1998 time:inXSDgYear "1998"^^xsd:gYear.
+
+    oba:1914-1998 time:hasBeginning oba:year1914;
+time:hasEnd oba:year1998.
+
+oba:year1914 time:inXSDgYear "1914"^^xsd:gYear.
+oba:year1998 time:inXSDgYear "1998"^^xsd:gYear.
+
+    oba:1788-1846 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1846.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1846 time:inXSDgYear "1846"^^xsd:gYear.
+
+    oba:1846-1855 time:hasBeginning oba:year1846;
+time:hasEnd oba:year1855.
+
+oba:year1846 time:inXSDgYear "1846"^^xsd:gYear.
+oba:year1855 time:inXSDgYear "1855"^^xsd:gYear.
+
+    oba:1855-1898 time:hasBeginning oba:year1855;
+time:hasEnd oba:year1898.
+
+oba:year1855 time:inXSDgYear "1855"^^xsd:gYear.
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+
+    oba:1846-1874 time:hasBeginning oba:year1846;
+time:hasEnd oba:year1874.
+
+oba:year1846 time:inXSDgYear "1846"^^xsd:gYear.
+oba:year1874 time:inXSDgYear "1874"^^xsd:gYear.
+
+    oba:1855-1874 time:hasBeginning oba:year1855;
+time:hasEnd oba:year1874.
+
+oba:year1855 time:inXSDgYear "1855"^^xsd:gYear.
+oba:year1874 time:inXSDgYear "1874"^^xsd:gYear.
+
+    oba:1788-1873 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1873.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1873 time:inXSDgYear "1873"^^xsd:gYear.
+
+    oba:1873-1998 time:hasBeginning oba:year1873;
+time:hasEnd oba:year1998.
+
+oba:year1873 time:inXSDgYear "1873"^^xsd:gYear.
+oba:year1998 time:inXSDgYear "1998"^^xsd:gYear.
+
+    oba:1873-1898 time:hasBeginning oba:year1873;
+time:hasEnd oba:year1898.
+
+oba:year1873 time:inXSDgYear "1873"^^xsd:gYear.
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+
+    oba:1788-1898 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1898.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+
+    oba:1898-1998 time:hasBeginning oba:year1898;
+time:hasEnd oba:year1998.
+
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+oba:year1998 time:inXSDgYear "1998"^^xsd:gYear.
+
+    oba:1788-1898 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1898.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+
+    oba:1898-1998 time:hasBeginning oba:year1898;
+time:hasEnd oba:year1998.
+
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+oba:year1998 time:inXSDgYear "1998"^^xsd:gYear.
+
+    oba:1788-1998 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1998.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1998 time:inXSDgYear "1998"^^xsd:gYear.
+
+    oba:1898-1998 time:hasBeginning oba:year1898;
+time:hasEnd oba:year1998.
+
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+oba:year1998 time:inXSDgYear "1998"^^xsd:gYear.
+
+    oba:1816-1834 time:hasBeginning oba:year1816;
+time:hasEnd oba:year1834.
+
+oba:year1816 time:inXSDgYear "1816"^^xsd:gYear.
+oba:year1834 time:inXSDgYear "1834"^^xsd:gYear.
+
+    oba:1788-1834 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1834.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1834 time:inXSDgYear "1834"^^xsd:gYear.
+
+    oba:1834-1854 time:hasBeginning oba:year1834;
+time:hasEnd oba:year1854.
+
+oba:year1834 time:inXSDgYear "1834"^^xsd:gYear.
+oba:year1854 time:inXSDgYear "1854"^^xsd:gYear.
+
+    oba:1834-1886 time:hasBeginning oba:year1834;
+time:hasEnd oba:year1886.
+
+oba:year1834 time:inXSDgYear "1834"^^xsd:gYear.
+oba:year1886 time:inXSDgYear "1886"^^xsd:gYear.
+
+    oba:1886-1894 time:hasBeginning oba:year1886;
+time:hasEnd oba:year1894.
+
+oba:year1886 time:inXSDgYear "1886"^^xsd:gYear.
+oba:year1894 time:inXSDgYear "1894"^^xsd:gYear.
+
+    oba:1884-1896 time:hasBeginning oba:year1884;
+time:hasEnd oba:year1896.
+
+oba:year1884 time:inXSDgYear "1884"^^xsd:gYear.
+oba:year1896 time:inXSDgYear "1896"^^xsd:gYear.
+
+    oba:1896-1898 time:hasBeginning oba:year1896;
+time:hasEnd oba:year1898.
+
+oba:year1896 time:inXSDgYear "1896"^^xsd:gYear.
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+
+    oba:1788-1840 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1840.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1840 time:inXSDgYear "1840"^^xsd:gYear.
+
+    oba:1840-1854 time:hasBeginning oba:year1840;
+time:hasEnd oba:year1854.
+
+oba:year1840 time:inXSDgYear "1840"^^xsd:gYear.
+oba:year1854 time:inXSDgYear "1854"^^xsd:gYear.
+
+    oba:1788-1852 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1852.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1852 time:inXSDgYear "1852"^^xsd:gYear.
+
+    oba:1852-1894 time:hasBeginning oba:year1852;
+time:hasEnd oba:year1894.
+
+oba:year1852 time:inXSDgYear "1852"^^xsd:gYear.
+oba:year1894 time:inXSDgYear "1894"^^xsd:gYear.
+
+    oba:1852-1886 time:hasBeginning oba:year1852;
+time:hasEnd oba:year1886.
+
+oba:year1852 time:inXSDgYear "1852"^^xsd:gYear.
+oba:year1886 time:inXSDgYear "1886"^^xsd:gYear.
+
+    oba:1788-1840 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1840.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1840 time:inXSDgYear "1840"^^xsd:gYear.
+
+    oba:1840-1854 time:hasBeginning oba:year1840;
+time:hasEnd oba:year1854.
+
+oba:year1840 time:inXSDgYear "1840"^^xsd:gYear.
+oba:year1854 time:inXSDgYear "1854"^^xsd:gYear.
+
+    oba:1788-1894 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1894.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1894 time:inXSDgYear "1894"^^xsd:gYear.
+
+    oba:1788-1894 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1894.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1894 time:inXSDgYear "1894"^^xsd:gYear.
+
+    oba:1788-1896 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1896.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1896 time:inXSDgYear "1896"^^xsd:gYear.
+
+    oba:1788-1899 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1899.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1899 time:inXSDgYear "1899"^^xsd:gYear.
+
+    oba:1899-1998 time:hasBeginning oba:year1899;
+time:hasEnd oba:year1998.
+
+oba:year1899 time:inXSDgYear "1899"^^xsd:gYear.
+oba:year1998 time:inXSDgYear "1998"^^xsd:gYear.
+
+    oba:1899-1998 time:hasBeginning oba:year1899;
+time:hasEnd oba:year1998.
+
+oba:year1899 time:inXSDgYear "1899"^^xsd:gYear.
+oba:year1998 time:inXSDgYear "1998"^^xsd:gYear.
+
+    oba:1898-1998 time:hasBeginning oba:year1898;
+time:hasEnd oba:year1998.
+
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+oba:year1998 time:inXSDgYear "1998"^^xsd:gYear.
+
+    oba:1788-1870 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1870.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1870 time:inXSDgYear "1870"^^xsd:gYear.
+
+    oba:1870-1898 time:hasBeginning oba:year1870;
+time:hasEnd oba:year1898.
+
+oba:year1870 time:inXSDgYear "1870"^^xsd:gYear.
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+
+    oba:1870-1898 time:hasBeginning oba:year1870;
+time:hasEnd oba:year1898.
+
+oba:year1870 time:inXSDgYear "1870"^^xsd:gYear.
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+
+    oba:1788-1898 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1898.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+
+    oba:1788-1898 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1898.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+
+    oba:1788-1898 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1898.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+
+    oba:1898-1998 time:hasBeginning oba:year1898;
+time:hasEnd oba:year1998.
+
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+oba:year1998 time:inXSDgYear "1998"^^xsd:gYear.
+
+    oba:1898-1975 time:hasBeginning oba:year1898;
+time:hasEnd oba:year1975.
+
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+oba:year1975 time:inXSDgYear "1975"^^xsd:gYear.
+
+    oba:1975-1998 time:hasBeginning oba:year1975;
+time:hasEnd oba:year1998.
+
+oba:year1975 time:inXSDgYear "1975"^^xsd:gYear.
+oba:year1998 time:inXSDgYear "1998"^^xsd:gYear.
+
+    oba:1788-1998 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1998.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1998 time:inXSDgYear "1998"^^xsd:gYear.
+
+    oba:1788-1898 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1898.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+
+    oba:1788-1898 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1898.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+
+    oba:1788-1860 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1860.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1860 time:inXSDgYear "1860"^^xsd:gYear.
+
+    oba:1860-1898 time:hasBeginning oba:year1860;
+time:hasEnd oba:year1898.
+
+oba:year1860 time:inXSDgYear "1860"^^xsd:gYear.
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+
+    oba:1860-1898 time:hasBeginning oba:year1860;
+time:hasEnd oba:year1898.
+
+oba:year1860 time:inXSDgYear "1860"^^xsd:gYear.
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+
+    oba:1788-1860 time:hasBeginning oba:year1788;
+time:hasEnd oba:year1860.
+
+oba:year1788 time:inXSDgYear "1788"^^xsd:gYear.
+oba:year1860 time:inXSDgYear "1860"^^xsd:gYear.
+
+    oba:1860-1898 time:hasBeginning oba:year1860;
+time:hasEnd oba:year1898.
+
+oba:year1860 time:inXSDgYear "1860"^^xsd:gYear.
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
+
+    oba:1866-1872 time:hasBeginning oba:year1866;
+time:hasEnd oba:year1872.
+
+oba:year1866 time:inXSDgYear "1866"^^xsd:gYear.
+oba:year1872 time:inXSDgYear "1872"^^xsd:gYear.
+
+    oba:1872-1898 time:hasBeginning oba:year1872;
+time:hasEnd oba:year1898.
+
+oba:year1872 time:inXSDgYear "1872"^^xsd:gYear.
+oba:year1898 time:inXSDgYear "1898"^^xsd:gYear.
