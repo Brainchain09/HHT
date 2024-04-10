@@ -11,8 +11,7 @@
                         owl:imports <http://www.opengis.net/ont/geosparql> ,
                                     <http://www.w3.org/2006/time#2016> ,
                                     <http://www.w3.org/ns/org#> ;
-                        <http://creativecommons.org/ns#license> <http://creativecommons.org/licenses/by/4.0/> ,
-                                                                <http://www.data.gouv.fr/Licence-Ouverte-Open-Licence> ;
+                        <http://creativecommons.org/ns#license> <http://creativecommons.org/licenses/by/4.0/>;
                         <http://purl.org/dc/terms/creator> "Nathalie Aussenac-Gilles" ,
                                                            "Nathalie Hernandez" ,
                                                            "William Charles" ;
