@@ -220,9 +220,9 @@ We provide example of SPARQL queries that can be used in order to query the know
 	    	?start <http://www.w3.org/2006/time#inXSDgYear> ?year.
 	    } GROUP BY ?year ORDER BY ?year
 
-## Querying : comparison with TSN
+## Querying : comparison with TSN (http://purl.org/net/tsn)
 
-Some queries can be carried out in TSN and not in HHT. Here are some examples :
+Some queries can be carried out in HHT and not in TSN. Here are some examples :
 
 1. Identify levels taking part in several hierarchies :
 
