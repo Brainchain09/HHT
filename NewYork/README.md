@@ -44,8 +44,7 @@ The versions seem to be exactly the same, because the expressiveness of the onto
 |  County     | 7  | 13 |
 |  State     |1 | 1 |
 
-
-
+As it uses the set operators to compute geometries it can not be analysed using the algorithm as of now
 
 
 
