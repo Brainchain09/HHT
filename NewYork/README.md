@@ -33,6 +33,36 @@ The versions seem to be exactly the same, because the expressiveness of the onto
         hht:hasSetGeometry [hht:hasComponent _:BB_Yonkers;
         hht:operatorCardinality "1"].
 
+
+In addition, the V2 showcases some cases of heterogeneous geometrical description, such as the case of the village of New Brighton, which expands to become coextensive with the Town of Castleton :
+        
+        obaData:Castleton_V1 a hht:UnitVersion;
+            hht:validityPeriod oba:1860-1898;
+            hht:isMemberOf oba:Town;
+            hht:contains obaData:New_Brighton_V1;
+            hht:properContains obaData:New_Brighton_V0;
+            hht:operativeContent [hht:unionOf obaData:New_Brighton_V0,obaData:New_Brighton_V1, _:NewBrigthonComplementary;
+                                hht:operatorCardinality "2"].
+        
+        obaData:New_Brighton a hht:Unit ;
+            hht:hasVersion obaData:New_Brighton_V0,obaData:New_Brighton_V1.
+        
+        obaData:New_Brighton_V0 a hht:UnitVersion;
+            hht:validityPeriod oba:1866-1872;
+            hht:isMemberOf oba:Village;
+            hht:hasSetGeometry [hht:hasComponent _:BB_New_Brighton;
+                                hht:operatorCardinality "2"].
+        
+        obaData:New_Brighton_V1 a hht:UnitVersion;
+            hht:validityPeriod oba:1872-1898;
+            hht:isMemberOf oba:Village;
+            hht:hasSetGeometry [hht:hasComponent _:BB_New_Brighton, _:NewBrigthonComplementary;
+                                hht:operatorCardinality "2"].
+
+_:NewBrigthonComplementary a hht:NonVoidArea; hht:complementaryTo _:New_Brighton_V0; hht:complementaryWithRegardOf obaData:Castleton_V1; hht:hasGeometry _:BB_NewBrightonComplementary.
+
+
+
 **Time focus :** 1788-1998
 
 |Level|Units  |Versions |
