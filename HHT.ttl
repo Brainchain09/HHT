@@ -1,58 +1,69 @@
 @prefix : <https://w3id.org/HHT#> .
+@prefix ns: <http://creativecommons.org/ns#> .
+@prefix org: <http://www.w3.org/ns/org#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix terms: <http://purl.org/dc/terms/> .
 @base <https://w3id.org/HHT> .
 
 <https://w3id.org/HHT> rdf:type owl:Ontology ;
                         owl:versionIRI <https://w3id.org/HHT/1.1> ;
                         owl:imports <http://www.opengis.net/ont/geosparql> ,
                                     <http://www.w3.org/2006/time#2016> ,
-                                    <http://www.w3.org/ns/org#> ;
-                        <http://creativecommons.org/ns#license> <http://creativecommons.org/licenses/by/4.0/>;
-                        <http://purl.org/dc/terms/creator> "Nathalie Aussenac-Gilles" ,
-                                                           "Nathalie Hernandez" ,
-                                                           "William Charles" ;
-                        <http://purl.org/dc/terms/issued> "2023-12-01"^^xsd:date ;
-                        <http://purl.org/vocab/vann/preferredNamespacePrefix> "hht" ;
-                        <http://purl.org/vocab/vann/preferredNamespaceUri> : .
+                                    org: ;
+                        ns:license <http://creativecommons.org/licenses/by/4.0/> ;
+                        terms:creator "Nathalie Aussenac-Gilles" ,
+                                      "Nathalie Hernandez" ,
+                                      "William Charles" ;
+                        terms:issued "2023-12-01"^^xsd:date ;
+                        vann:preferredNamespacePrefix "hht" ;
+                        vann:preferredNamespaceUri : ;
+                        rdfs:comment "The notion of territory plays a major role in human and social sciences. In an historical context, most approaches are irrelevant as they rely on geometric data, which is not available. In order to represent historical territories,we conceived the HHT ontology (Hierarchical Historical Territory) to represent hierarchical historical territorial divisions, without having to know their geometry. This approach relies on a notion of building blocks to replace polygonal geometry."@en ;
+                        rdfs:label "Historical Hierarchical Territories"@en ;
+                        owl:priorVersion <https://w3id.org/HHT/1.0> ;
+                        owl:versionInfo "1.1"@en .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
 ###  http://creativecommons.org/ns#license
-<http://creativecommons.org/ns#license> rdf:type owl:AnnotationProperty .
+ns:license rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/creator
-<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+terms:creator rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/issued
-<http://purl.org/dc/terms/issued> rdf:type owl:AnnotationProperty .
+terms:issued rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/modified
-<http://purl.org/dc/terms/modified> rdf:type owl:AnnotationProperty .
+terms:modified rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/title
-<http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+terms:title rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/vocab/vann/preferredNamespacePrefix
-<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/vocab/vann/preferredNamespaceUri
-<http://purl.org/vocab/vann/preferredNamespaceUri> rdf:type owl:AnnotationProperty .
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
 
 
 ###  http://xmlns.com/foaf/0.1/name
-<http://xmlns.com/foaf/0.1/name> rdf:type owl:AnnotationProperty .
+foaf:name rdf:type owl:AnnotationProperty .
 
 
 #################################################################
@@ -61,8 +72,8 @@
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P144_joined_with
 <http://www.cidoc-crm.org/cidoc-crm/P144_joined_with> rdf:type owl:ObjectProperty ;
-                                                      rdfs:subPropertyOf <http://www.w3.org/ns/org#originalOrganization> ,
-                                                                         <http://www.w3.org/ns/org#resultingOrganization> ;
+                                                      rdfs:subPropertyOf org:originalOrganization ,
+                                                                         org:resultingOrganization ;
                                                       rdfs:range <http://www.cidoc-crm.org/cidoc-crm/E74_Group> ;
                                                       rdfs:comment """This property identifies the instance of E74 Group of which an instance of E39 Actor becomes a member through an instance of E85 Joining.
 Although a joining activity normally concerns only one instance of E74 Group, it is possible to imagine circumstances under which becoming member of one Group implies becoming member of another Group as well.
@@ -75,8 +86,8 @@ The property P144.1 kind of member can be used to specify the type of membership
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P146_separated_from
 <http://www.cidoc-crm.org/cidoc-crm/P146_separated_from> rdf:type owl:ObjectProperty ;
-                                                         rdfs:subPropertyOf <http://www.w3.org/ns/org#originalOrganization> ,
-                                                                            <http://www.w3.org/ns/org#resultingOrganization> ;
+                                                         rdfs:subPropertyOf org:originalOrganization ,
+                                                                            org:resultingOrganization ;
                                                          rdfs:range <http://www.cidoc-crm.org/cidoc-crm/E74_Group> ;
                                                          rdfs:comment """This property identifies the instance of E74 Group an instance of E39 Actor leaves through an instance of E86 Leaving.
 Although a leaving activity normally concerns only one instance of E74 Group, it is possible to imagine circumstances under which leaving one E74 Group implies leaving another E74 Group as well."""@en ;
@@ -87,8 +98,8 @@ Although a leaving activity normally concerns only one instance of E74 Group, it
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P151_was_formed_from
 <http://www.cidoc-crm.org/cidoc-crm/P151_was_formed_from> rdf:type owl:ObjectProperty ;
-                                                          rdfs:subPropertyOf <http://www.w3.org/ns/org#originalOrganization> ,
-                                                                             <http://www.w3.org/ns/org#resultingOrganization> ;
+                                                          rdfs:subPropertyOf org:originalOrganization ,
+                                                                             org:resultingOrganization ;
                                                           rdfs:range <http://www.cidoc-crm.org/cidoc-crm/E74_Group> ;
                                                           rdfs:comment "This property associates an instance of E66 Formation with an instance of E74 Group from which the new group was formed preserving a sense of continuity such as in mission, membership or tradition."@en ;
                                                           rdfs:label "was formed from"@en .
@@ -96,7 +107,7 @@ Although a leaving activity normally concerns only one instance of E74 Group, it
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P95_has_formed
 <http://www.cidoc-crm.org/cidoc-crm/P95_has_formed> rdf:type owl:ObjectProperty ;
-                                                    rdfs:subPropertyOf <http://www.w3.org/ns/org#resultingOrganization> ;
+                                                    rdfs:subPropertyOf org:resultingOrganization ;
                                                     rdfs:range <http://www.cidoc-crm.org/cidoc-crm/E74_Group> ;
                                                     rdfs:comment "This property associates the instance of E66 Formation with the instance of E74 Group that it founded."@en ;
                                                     rdfs:label "a fondé"@fr ,
@@ -110,7 +121,7 @@ Although a leaving activity normally concerns only one instance of E74 Group, it
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P99_dissolved
 <http://www.cidoc-crm.org/cidoc-crm/P99_dissolved> rdf:type owl:ObjectProperty ;
-                                                   rdfs:subPropertyOf <http://www.w3.org/ns/org#originalOrganization> ;
+                                                   rdfs:subPropertyOf org:originalOrganization ;
                                                    rdfs:range <http://www.cidoc-crm.org/cidoc-crm/E74_Group> ;
                                                    rdfs:comment "This property associates the instance of E68 Dissolution with the instance of E74 Group that it disbanded."@en ;
                                                    rdfs:label "a dissous"@fr ,
@@ -155,11 +166,7 @@ Although a leaving activity normally concerns only one instance of E74 Group, it
                    owl:TransitiveProperty ,
                    owl:ReflexiveProperty ;
           rdfs:domain :TerritoryVersion ;
-          rdfs:range [ rdf:type owl:Class ;
-                       owl:unionOf ( :SetAreaConstruction
-                                     :TerritoryVersion
-                                   )
-                     ] ;
+          rdfs:range :TerritoryVersion ;
           owl:propertyChainAxiom ( :operativeContent
                                    :unionOf
                                  ) ;
@@ -171,6 +178,7 @@ Although a leaving activity normally concerns only one instance of E74 Group, it
 :defines rdf:type owl:ObjectProperty ;
          rdfs:subPropertyOf :attachedTo ;
          owl:inverseOf :isDefinedBy ;
+         rdfs:range :UnitVersion ;
          rdfs:comment "Denotes the units an actor has normalized."@en ;
          rdfs:label "defines" .
 
@@ -388,8 +396,6 @@ Although a leaving activity normally concerns only one instance of E74 Group, it
                       owl:AsymmetricProperty ,
                       owl:TransitiveProperty ,
                       owl:IrreflexiveProperty ;
-             rdfs:domain :UnitVersion ;
-             rdfs:range :UnitVersion ;
              rdfs:comment "Denotes the location of a unit version inside another one."@en ;
              rdfs:label "isLocatedIn" .
 
@@ -418,7 +424,7 @@ Although a leaving activity normally concerns only one instance of E74 Group, it
 
 ###  https://w3id.org/HHT#operativeContent
 :operativeContent rdf:type owl:ObjectProperty ;
-                  rdfs:subPropertyOf :contains ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
                   rdf:type owl:FunctionalProperty ;
                   rdfs:domain :TerritoryVersion ;
                   rdfs:range :SetAreaConstruction ;
@@ -429,7 +435,7 @@ Although a leaving activity normally concerns only one instance of E74 Group, it
 ###  https://w3id.org/HHT#properContains
 :properContains rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf :contains ;
-                rdfs:comment "Denotes a version geometrically strictly included inside another unit version."@en ;
+                rdfs:comment "Denotes a version geometrically strictly included inside another unit version. In most cases, it is equivalent to the contains property, except when a sub territory is coextensive to the subject territory of a triple involving this property, in which case properContains does not apply."@en ;
                 rdfs:label "properContains"@en .
 
 
@@ -451,7 +457,7 @@ Although a leaving activity normally concerns only one instance of E74 Group, it
 ###  https://w3id.org/HHT#validityPeriod
 :validityPeriod rdf:type owl:ObjectProperty ;
                 rdfs:domain :Version ;
-                rdfs:range <http://www.w3.org/2006/time#Interval> ;
+                rdfs:range :TemporalPrimitive ;
                 rdfs:comment "Denotes the time interval where the state described by a version is valid."@en ;
                 rdfs:label "validityPeriod" .
 
@@ -689,7 +695,7 @@ For a more complete description, objects may be decomposed into their components
               rdfs:domain :Version ;
               rdfs:range xsd:boolean ;
               rdfs:comment "A boolean, indicating whether a version is deprecated or not. Without any property regarding deprecation, a version is considered as non-deprecated."@en ;
-              rdfs:label "isDeprecated" .
+              rdfs:label "is deprecated"@en .
 
 
 ###  https://w3id.org/HHT#operatorCardinality
@@ -708,8 +714,8 @@ For a more complete description, objects may be decomposed into their components
 :setCardinality rdf:type owl:DatatypeProperty ;
                 rdfs:domain :BlockGeometry ;
                 rdfs:range xsd:positiveInteger ;
-                rdfs:label "Denotes the number of elements of the geometry set described in a BlockGeometry."@en ,
-                           "setCardinality" .
+                rdfs:comment "Denotes the number of elements of the geometry set described in a BlockGeometry."@en ;
+                rdfs:label "setCardinality"@en .
 
 
 #################################################################
@@ -751,12 +757,16 @@ A gathering of people becomes an instance of E74 Group when it exhibits organiza
                                        rdfs:label "Interval" .
 
 
+###  http://www.w3.org/2006/time#TemporalPosition
+<http://www.w3.org/2006/time#TemporalPosition> rdfs:subClassOf :TemporalPrimitive .
+
+
 ###  http://www.w3.org/ns/org#Organization
-<http://www.w3.org/ns/org#Organization> rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E74_Group> .
+org:Organization rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E74_Group> .
 
 
 ###  http://xmlns.com/foaf/0.1/Person
-<http://xmlns.com/foaf/0.1/Person> rdf:type owl:Class .
+foaf:Person rdf:type owl:Class .
 
 
 ###  https://w3id.org/HHT#Area
@@ -767,28 +777,88 @@ A gathering of people becomes an instance of E74 Group when it exhibits organiza
 
 ###  https://w3id.org/HHT#AreaComplementary
 :AreaComplementary rdf:type owl:Class ;
-                   rdfs:subClassOf :SetAreaConstruction ;
+                   rdfs:subClassOf :SetAreaConstruction ,
+                                   [ owl:intersectionOf ( :SetAreaConstruction
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :complementaryTo ;
+                                                            owl:someValuesFrom :TerritoryVersion
+                                                          ]
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :complementaryWithRegardOf ;
+                                                            owl:someValuesFrom :TerritoryVersion
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] ;
                    rdfs:comment "An area defined as the geometrical complementary of a defined area with regard to another area."@en ;
                    rdfs:label "AreaComplementary"@en .
 
 
 ###  https://w3id.org/HHT#AreaIntersection
 :AreaIntersection rdf:type owl:Class ;
-                  rdfs:subClassOf :SetAreaConstruction ;
+                  rdfs:subClassOf :SetAreaConstruction ,
+                                  [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :intersectionOf ;
+                                                           owl:someValuesFrom :TerritoryVersion
+                                                         ]
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :operatorCardinality ;
+                                                           owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                owl:onDatatype xsd:positiveInteger ;
+                                                                                owl:withRestrictions ( [ xsd:minInclusive "1"^^xsd:positiveInteger
+                                                                                                       ]
+                                                                                                     )
+                                                                              ]
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] ;
                   rdfs:comment "An area resulting from the geometrical intersection of two areas."@en ;
                   rdfs:label "AreaIntersection"@en .
 
 
 ###  https://w3id.org/HHT#AreaUnion
 :AreaUnion rdf:type owl:Class ;
-           rdfs:subClassOf :SetAreaConstruction ;
+           rdfs:subClassOf :SetAreaConstruction ,
+                           [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                    owl:onProperty :unionOf ;
+                                                    owl:someValuesFrom :TerritoryVersion
+                                                  ]
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty :operatorCardinality ;
+                                                    owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                         owl:onDatatype xsd:positiveInteger ;
+                                                                         owl:withRestrictions ( [ xsd:minInclusive "1"^^xsd:positiveInteger
+                                                                                                ]
+                                                                                              )
+                                                                       ]
+                                                  ]
+                                                ) ;
+                             rdf:type owl:Class
+                           ] ;
            rdfs:comment "Area resulting from the geometrical union of several areas."@en ;
            rdfs:label "AreaUnion"@en .
 
 
 ###  https://w3id.org/HHT#BlockGeometry
 :BlockGeometry rdf:type owl:Class ;
-               rdfs:subClassOf :TimeStableArea ;
+               rdfs:subClassOf :TimeStableArea ,
+                               [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                        owl:onProperty :hasComponent ;
+                                                        owl:someValuesFrom :stableBlockArea
+                                                      ]
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty :setCardinality ;
+                                                        owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                             owl:onDatatype xsd:positiveInteger ;
+                                                                             owl:withRestrictions ( [ xsd:minInclusive "1"^^xsd:positiveInteger
+                                                                                                    ]
+                                                                                                  )
+                                                                           ]
+                                                      ]
+                                                    ) ;
+                                 rdf:type owl:Class
+                               ] ;
                rdfs:comment "A set of stableBlockArea that represents a geometry."@en ;
                rdfs:label "BlockGeometry"@en .
 
@@ -804,6 +874,7 @@ A gathering of people becomes an instance of E74 Group when it exhibits organiza
                                        rdf:type owl:Class
                                      ] ;
                  rdfs:subClassOf :Level ;
+                 owl:disjointWith :SubElementaryLevel ;
                  rdfs:comment "This subclass of level allows to define which level(s) will be considered to determine the building blocks of the geometry."@en ;
                  rdfs:label "ElementaryLevel" .
 
@@ -823,18 +894,25 @@ A gathering of people becomes an instance of E74 Group when it exhibits organiza
 
 ###  https://w3id.org/HHT#IDSource
 :IDSource rdf:type owl:Class ;
-          rdfs:comment "Cette classe décrit de manière abstraite les bases de données historiques dont on peut extraire des identifiants spécifiques, avec pour objectif d'augmenter la réutilisabilité des données représentées."@fr ,
-                       "This class describes abstractly historical databases from which IDs can be collected, in order to improve reusability of data."@en ;
+          rdfs:comment "This class describes abstractly historical databases from which IDs can be collected, in order to improve reusability of data."@en ;
           rdfs:label "IDSource" .
 
 
 ###  https://w3id.org/HHT#Level
-:Level rdf:type owl:Class .
+:Level rdf:type owl:Class ;
+       owl:equivalentClass [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasVersion ;
+                             owl:someValuesFrom :LevelVersion
+                           ] .
 
 
 ###  https://w3id.org/HHT#LevelVersion
 :LevelVersion rdf:type owl:Class ;
-              rdfs:subClassOf :Version .
+              rdfs:subClassOf :Version ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :isLevelOf ;
+                                owl:someValuesFrom :HierarchicalCriterion
+                              ] .
 
 
 ###  https://w3id.org/HHT#ManagedUnit
@@ -842,7 +920,7 @@ A gathering of people becomes an instance of E74 Group when it exhibits organiza
              owl:equivalentClass [ owl:intersectionOf ( :Unit
                                                         [ rdf:type owl:Restriction ;
                                                           owl:onProperty :hasVersion ;
-                                                          owl:someValuesFrom :ManagedUnit
+                                                          owl:someValuesFrom :ManagedUnitVersion
                                                         ]
                                                       ) ;
                                    rdf:type owl:Class
@@ -863,23 +941,29 @@ A gathering of people becomes an instance of E74 Group when it exhibits organiza
                                           rdf:type owl:Class
                                         ] ;
                     rdfs:subClassOf :UnitVersion ;
-                    rdfs:comment "Subtype of UnitVersion that adds the notion of the influence of the actors over it."@en ,
-                                 """Unité spatiale défini comme un territoire : 
-Une représentation abstraite d'une portion géographique qui est réclamé ou occupé par une personne, un groupe ou une institution"""@fr ;
+                    rdfs:comment "Subtype of UnitVersion that adds the notion of the influence of the actors over it."@en ;
                     rdfs:label "ManagedUnitVersion" .
 
 
 ###  https://w3id.org/HHT#NonVoidArea
 :NonVoidArea rdf:type owl:Class ;
              owl:equivalentClass [ owl:intersectionOf ( :SetAreaConstruction
-                                                        [ rdf:type owl:Restriction ;
-                                                          owl:onProperty :hasGeometry ;
-                                                          owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                                        [ rdf:type owl:Class ;
+                                                          owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty :hasComponent ;
+                                                                          owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                                                        ]
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty :hasGeometry ;
+                                                                          owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                                                        ]
+                                                                      )
                                                         ]
                                                       ) ;
                                    rdf:type owl:Class
                                  ] ;
              rdfs:subClassOf :SetAreaConstruction ;
+             owl:disjointWith :VoidArea ;
              rdfs:comment "Any Area with an actual extent."@en ;
              rdfs:label "NonVoidArea"@en .
 
@@ -887,6 +971,9 @@ Une représentation abstraite d'une portion géographique qui est réclamé ou o
 ###  https://w3id.org/HHT#SetAreaConstruction
 :SetAreaConstruction rdf:type owl:Class ;
                      rdfs:subClassOf :TimeStableArea ;
+                     owl:disjointUnionOf ( :NonVoidArea
+                                           :VoidArea
+                                         ) ;
                      rdfs:comment "A superclass for all areas that result from a classical set operation."@en ;
                      rdfs:label "SetAreaConstruction"@en .
 
@@ -929,14 +1016,19 @@ Une représentation abstraite d'une portion géographique qui est réclamé ou o
 
 
 ###  https://w3id.org/HHT#TemporalPrimitive
-:TemporalPrimitive rdf:type owl:Class .
+:TemporalPrimitive rdf:type owl:Class ;
+                   rdfs:comment "Any marker that could be used as temporal primitive for HHT."@en ;
+                   rdfs:label "Temporal Primitive"@en .
 
 
 ###  https://w3id.org/HHT#Territory
 :Territory rdf:type owl:Class ;
            rdfs:subClassOf <http://www.opengis.net/ont/geosparql#Feature> ,
                            :Area ;
-           rdfs:comment "Qualifies geographical areas meaningful to a human population. Typically, an area is considered to be meaningful as soon as it is named."@en ;
+           rdfs:comment """Qualifies geographical areas meaningful to a human population. Typically, an area is considered to be meaningful as soon as it has a designation that falls under one of the following characteristics:
+- A proper name, such as Paris or the Everest Mountain.
+– An address, such as 417 fifth avenue, New York.
+– A defined indexing designation, such as Paris third district."""@en ;
            rdfs:label "Territory" .
 
 
@@ -944,8 +1036,7 @@ Une représentation abstraite d'une portion géographique qui est réclamé ou o
 :TerritoryVersion rdf:type owl:Class ;
                   rdfs:subClassOf :TimeStableArea ,
                                   :Version ;
-                  rdfs:comment "Geographical area, which is defined by any human division."@en ,
-                               "Zone géographique générique auquel la recherche historique donne du sens"@fr ;
+                  rdfs:comment "Geographical area, which is defined by any human division."@en ;
                   rdfs:label "TerritoryVersion" .
 
 
@@ -979,21 +1070,30 @@ Une représentation abstraite d'une portion géographique qui est réclamé ou o
                                                       ) ;
                                    rdf:type owl:Class
                                  ] ;
-             rdfs:subClassOf :TerritoryVersion .
+             rdfs:subClassOf :TerritoryVersion ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :isMemberOf ;
+                               owl:someValuesFrom :LevelVersion
+                             ] .
 
 
 ###  https://w3id.org/HHT#Version
 :Version rdf:type owl:Class ;
-         rdfs:comment "Time slice representing a temporary state of an object. It is attached to said object, which bears the identity."@en ,
-                      """Version d'un concept, dont une définition donné de l'identité définissant une version est stable au cours d'une période de temps. 
-Chaque version peut se rattacher au concept atemporel qu'elle décrit.
-Chaque version se succède l'une à l'autre, par des changements qui peuvent être décrit."""@fr ;
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty :validityPeriod ;
+                           owl:someValuesFrom :TemporalPrimitive
+                         ] ;
+         rdfs:comment "Time slice representing a temporary state of an object. It is attached to said object, which bears the identity."@en ;
          rdfs:label "Version" .
 
 
 ###  https://w3id.org/HHT#VoidArea
 :VoidArea rdf:type owl:Class ;
           owl:equivalentClass [ owl:intersectionOf ( :SetAreaConstruction
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty :hasComponent ;
+                                                       owl:maxCardinality "0"^^xsd:nonNegativeInteger
+                                                     ]
                                                      [ rdf:type owl:Restriction ;
                                                        owl:onProperty :hasGeometry ;
                                                        owl:maxCardinality "0"^^xsd:nonNegativeInteger
@@ -1008,8 +1108,7 @@ Chaque version se succède l'une à l'autre, par des changements qui peuvent êt
 
 ###  https://w3id.org/HHT#outerID
 :outerID rdf:type owl:Class ;
-         rdfs:comment "Cette classe correspond à une réification d'un champ ID extérieur à l'indexation interne. On y aggrège un IDSource qui représente l'origine de l'identifiant, et une valeur (idValue) correspondant à l'identifiant à proprement parler."@fr ,
-                      "This class is a reification of an ID data field that differs from intern indexation. It is attached to an IDSource which describes the origin of said ID, and an idValue which corresponds to the actual ID."@en ;
+         rdfs:comment "This class is a reification of an ID data field that differs from intern indexation. It is attached to an IDSource which describes the origin of said ID, and an idValue which corresponds to the actual ID."@en ;
          rdfs:label "outerID" .
 
 
@@ -1017,7 +1116,7 @@ Chaque version se succède l'une à l'autre, par des changements qui peuvent êt
 :stableBlockArea rdf:type owl:Class ;
                  rdfs:subClassOf :TimeStableArea ;
                  rdfs:comment "A block supposed to exist at all times, that is characterized only by its geometrical extent and has not necessarily any particular meaning other than that."@en ;
-                 rdfs:label "stableBlockArea"@en .
+                 rdfs:label "stable block area"@en .
 
 
 #################################################################
@@ -1042,22 +1141,22 @@ Chaque version se succède l'une à l'autre, par des changements qui peuvent êt
 
 ###  https://w3id.org/HHT#Level
 :Level rdf:type owl:NamedIndividual ;
-       <http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.org/net/tsn#Level> .
+       prov:wasDerivedFrom <http://purl.org/net/tsn#Level> .
 
 
 ###  https://w3id.org/HHT#LevelVersion
 :LevelVersion rdf:type owl:NamedIndividual ;
-              <http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.org/net/tsn#LevelVersion> .
+              prov:wasDerivedFrom <http://purl.org/net/tsn#LevelVersion> .
 
 
 ###  https://w3id.org/HHT#Unit
 :Unit rdf:type owl:NamedIndividual ;
-      <http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.org/net/tsn#Unit> .
+      prov:wasDerivedFrom <http://purl.org/net/tsn#Unit> .
 
 
 ###  https://w3id.org/HHT#UnitVersion
 :UnitVersion rdf:type owl:NamedIndividual ;
-             <http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.org/net/tsn#UnitVersion> .
+             prov:wasDerivedFrom <http://purl.org/net/tsn#UnitVersion> .
 
 
 #################################################################
@@ -1068,26 +1167,18 @@ Chaque version se succède l'une à l'autre, par des changements qui peuvent êt
 
 
 :Level rdfs:comment "Hierarchical level of a territory."@en ;
-       rdfs:label "Level" ;
-       rdfs:comment """Niveau hiérarchique servant à interpréter le territoire et à le classifier.
-Ce niveau se défini selon un critère qui explicite la dimension à travers laquel l'espace est analysé. 
-Ce niveau hiérarchique peut posséder des niveaux supérieurs et/ou inférieurs selon ce même critère. 
-Ce niveau contient un ensemble d'unité spatiale dont l'union forme son territoire d'étude, d'application."""@fr .
+       rdfs:label "Level" .
 
 
 :LevelVersion rdfs:comment "Version of a level."@en ;
               rdfs:label "LevelVersion" .
 
 
-:Unit rdfs:comment "A territory normalized by an Actor, often taking part into a territorial hierarchy.. Its state is further described using UnitVersion."@en ;
-      rdfs:label "Unit" ;
-      rdfs:comment """Un partie d'espace géographique défini comme appartenant à un niveau hiérarchique. 
-Cette unité spatiale peut contenir des sous-unités d'un niveau différent et peut être contenue par une unité d'un niveau supérieur"""@fr .
+:Unit rdfs:label "Unit" ;
+      rdfs:comment "A territory normalized by an Actor, often taking part into a territorial hierarchy. Its state is further described using UnitVersion."@en .
 
 
-:UnitVersion rdfs:comment """Représentation d'une unité spatiale dont la géométrie a été stable pour une période de temps. 
- Les composantes inférieurs de cette unité peuvent se modifer pendant cette période de temps, mais cela n'a pas affecté la géométrie de cette unité."""@fr ,
-                          """Time slice representing the state of a unit during a provided time interval.
+:UnitVersion rdfs:comment """Time slice representing the state of a unit during a provided time interval.
 It is considered that the state of a unit is not affected by its upper and lower units, so long as it doesn't change its geometry."""@en ;
              rdfs:label "UnitVersion" .
 
