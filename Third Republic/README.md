@@ -1,6 +1,10 @@
 ## Third Republic
 
-This dataset is used as the most basic test for the algorithm. It describes the administrative territory division of France during the Third Republic period. All the building blocks are properly described. It has the following characteristics : 
+This dataset is used as the most basic test for the algorithm. It describes the administrative territory division of France during the Third Republic period. All the building blocks are properly described.
+
+Source data is available at https://zenodo.org/record/8019886.
+
+It has the following characteristics : 
 
 **Time focus :** 1870-1940
 
