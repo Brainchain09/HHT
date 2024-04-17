@@ -3,7 +3,7 @@ HHT (Hierarchical Historical Territories) is an ontology designed to describe mu
 
 ## HHT Ontology
 
-The file **HHT.ttl** contains the HHT ontology description.
+The file **HHT.ttl** contains the HHT ontology description (IRI : https://w3id.org/HHT).
 
 ## HHT Change computation algorithm
 
