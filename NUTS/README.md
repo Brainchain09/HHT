@@ -1,6 +1,10 @@
 ﻿## NUTS
 
-This large dataset describes the NUTS (and LAU) hierarchy of the European Union. Due to inconsistencies in the original datasets, only 14 of the 28 European countries are described. Characteristics of the dataset are as follows : 
+This large dataset describes the NUTS (and LAU) hierarchy of the European Union. Due to inconsistencies in the original datasets, only 14 of the 28 European countries are described. 
+
+Source data is available at https://zenodo.org/record/8019886.
+
+Characteristics of the dataset are as follows : 
 
 **Time focus :** 2010-2017
 
