@@ -59,7 +59,7 @@ In addition, the V2 showcases some cases of heterogeneous geometrical descriptio
             hht:hasSetGeometry [hht:hasComponent _:BB_New_Brighton, _:NewBrigthonComplementary;
                                 hht:operatorCardinality "2"].
 
-_:NewBrigthonComplementary a hht:NonVoidArea; hht:complementaryTo _:New_Brighton_V0; hht:complementaryWithRegardOf obaData:Castleton_V1; hht:hasGeometry _:BB_NewBrightonComplementary.
+        _:NewBrigthonComplementary a hht:NonVoidArea; hht:complementaryTo _:New_Brighton_V0; hht:complementaryWithRegardOf obaData:Castleton_V1; hht:hasGeometry _:BB_NewBrightonComplementary.
 
 
 
