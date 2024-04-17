@@ -1,7 +1,8 @@
 ## New York City
 
-This dataset details the expansion of the City of New York. As it uses the set operators to compute geometries it can not be analysed using the algorithm as of now. 
+This dataset details the expansion of the City of New York. 
 This dataset was built manually using informations found in :
+
 MACY JR, Harry. Before the Five-Borough City: The Old Cities, Towns, and Villages That Came Together to Form ‘Greater New York.’. The New York Genealogical and Biographical Society, 1995, p. 3-10.
 Available at : https://anthonywrobins.com/MASresources/Before.The.Five.Boroughs.Harry1.Macy.pdf
 
