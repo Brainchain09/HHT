@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Charles"
+  given-names: "William"
+- family-names: "Aussenac-Gilles"
+  given-names: "Nathalie"
+- family-names: "Hernandez"
+  given-names: "Nathalie"
+title: "HHT ontology, knowledge graphs and algorithm"
+version: 1.2
+doi: 10.5281/zenodo.10952532
+date-released: 2024-06-06
+url: "https://github.com/Brainchain09/HHT"
