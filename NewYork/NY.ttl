@@ -1,11 +1,24 @@
 @prefix hht: <https://w3id.org/HHT#> .
-@prefix oba: <http://www.semanticweb.org/melodi/types#> .
-@prefix obaData: <http://www.semanticweb.org/melodi/data#> .
+@prefix oba: <https://w3id.org/HHT/Data/types#> .
+@prefix obaData: <https://w3id.org/HHT/Data/data#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <https://w3id.org/HHT/Data/> .
+
+:NY a void:Dataset, dcat:Dataset;
+dcat:hasCurrentVersion :NYV2;
+dcterms:title "HHT : New York"@en;
+dcterms:description "This dataset details the expansion of the City of New York. "@en;
+dcterms:creator "William Charles";
+dcterms:source "https://anthonywrobins.com/MASresources/Before.The.Five.Boroughs.Harry1.Macy.pdf";
+dcterms:issued "2024-04-17"^^xsd:date;
+dcterms:modified "2024-06-05"^^xsd:date ;
+dcterms:temporal oba:1788-1998 ;
+dcat:temporalResolution "P1Y"^^xsd:duration;
+dcterms:license <http://creativecommons.org/licenses/by/4.0/>.
 
 
 oba:State a hht:LevelVersion.
