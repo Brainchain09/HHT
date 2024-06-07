@@ -333,3 +333,14 @@ While in HHT it can be expressed as :
 			?Interval time:hasEnd ?end.
 			?end time:inXSDgYear ?date.
 		}
+
+## Alignment with fundational ontologies
+
+We are working on aligning our ontology with DOLCE and BFO. As of now, we are considering the following super classes for our concepts. These alignments will be added to the ontology's specification after they are discussed with specialists of foundational ontology.
+
+|HHT Class| BFO Super Class| DOLCE Super Class|
+|--|--|--|
+| Territory  | Fiat Object Part | Non-Agentive Physical Object|
+| Version | Occurent | State|
+| Level | Generally Dependent Continuant | Non-Agentive Social Object |
+| Hierarchical Criterion | Generally Dependent Continuant | Non-Agentive Social Object |
