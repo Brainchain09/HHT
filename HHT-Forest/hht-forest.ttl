@@ -1,0 +1,1748 @@
+@prefix : <https://w3id.org/HHT/Forest#> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix hht: <https://w3id.org/HHT#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix claim: <https://w3id.org/HHT/Claim#> .
+@prefix change: <https://w3id.org/HHT/Change> .
+@base <https://w3id.org/HHT/Forest> .
+
+<https://w3id.org/HHT/Forest> rdf:type owl:Ontology ;
+                              owl:imports <https://w3id.org/HHT/1.1>, <https://w3id.org/HHT/Right#> ;
+                              <http://creativecommons.org/ns#license> <http://creativecommons.org/licenses/by/4.0/> ,
+                                                                      <http://www.data.gouv.fr/Licence-Ouverte-Open-Licence> ;
+                              <http://purl.org/dc/terms/creator> "Nathalie Aussenac-Gilles" ,
+                                                                 "Nathalie Hernandez" ,
+                                                                 "Adrien Barton" ,
+                                                                 "Thibault Gautheron" ,
+                                                                 "William Charles" ;
+                              <http://purl.org/dc/terms/issued> "2024-11-15"^^xsd:date ;
+                              <http://purl.org/vocab/vann/preferredNamespacePrefix> "hhtF" ;
+                              <http://purl.org/vocab/vann/preferredNamespaceUri> : .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
+<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/HHT#hasSubLevel
+hht:hasSubLevel rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/HHT#isLevelOf
+hht:isLevelOf rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/HHT#isMemberOf
+hht:isMemberOf rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  https://w3id.org/HHT#isVersionOf
+hht:isVersionOf rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/HHT/Forest#aboutClaim
+:aboutClaim rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdfs:domain :ForestTrial ;
+            rdfs:range claim:Claim ;
+            rdfs:comment "Relates a trial to the claim that the trial is about." ;
+            rdfs:label "about claim" .
+
+
+###  https://w3id.org/HHT/Forest#actorHasJob
+:actorHasJob rdf:type owl:ObjectProperty ;
+             owl:equivalentProperty :hasOffice ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain crm:E39_Actor ;
+             rdfs:range :Office ;
+             rdfs:comment "Relates an actor to their occupation." ;
+             rdfs:label "actor has job" .
+
+
+###  https://w3id.org/HHT/Forest#actorLinkedToMaitrise
+:actorLinkedToMaitrise rdf:type owl:ObjectProperty ;
+                       rdfs:domain crm:E39_Actor ;
+                       rdfs:range hht:Unit ;
+                       rdfs:comment "Relates an actor to a territory that they are involved in." ;
+                       rdfs:label "actor linked to maitrise" .
+
+
+###  https://w3id.org/HHT/Forest#actorResidesIn
+:actorResidesIn rdf:type owl:ObjectProperty ,
+                         owl:FunctionalProperty ;
+                rdfs:domain crm:E39_Actor ;
+                rdfs:range hht:Unit ;
+                rdfs:comment "Relates an actor to their place of residence." ;
+                rdfs:label "actor resides in" .
+
+
+###  https://w3id.org/HHT/Forest#arpents
+:arpents rdf:type owl:ObjectProperty ;
+         owl:inverseOf :isArpentedBy ;
+         rdfs:domain crm:E39_Actor ;
+         rdfs:range :AfforestationVersion ;
+         rdfs:comment "Relates an actor to the forest they arpented." ;
+         rdfs:label "arpents" .
+
+
+###  https://w3id.org/HHT/Forest#confirmedBy
+:confirmedBy rdf:type owl:ObjectProperty ;
+             rdfs:domain :FroidourReformationTrial ;
+             rdfs:range crm:E39_Actor ;
+             rdfs:label "confirmed by" .
+
+
+###  https://w3id.org/HHT/Forest#containsSpecies
+:containsSpecies rdf:type owl:ObjectProperty ,
+                          owl:FunctionalProperty ;
+                 rdfs:domain :AfforestationStand ;
+                 rdfs:range :TreeSpecies ;
+                 rdfs:comment "Relates an afforestation stand to the tree species it contains." ;
+                 rdfs:label "contains species" .
+
+
+###  https://w3id.org/HHT/Forest#cuttingSpecies
+:cuttingSpecies rdf:type owl:ObjectProperty ;
+                rdfs:domain :CuttingProcedure ;
+                rdfs:range :TreeSpecies ;
+                rdfs:comment "Relates a cutting procedure to the tree species it dedicates to." ;
+                rdfs:label "cutting species" .
+
+
+###  https://w3id.org/HHT/Forest#defendant
+:defendant rdf:type owl:ObjectProperty ;
+           rdfs:domain :FroidourReformationTrial ;
+           rdfs:range crm:E39_Actor ;
+           rdfs:isDefinedBy "Relates a trial to its defendant." ;
+           rdfs:label "defendant" .
+
+
+###  https://w3id.org/HHT/Forest#hasCulture
+:hasCulture rdf:type owl:ObjectProperty ;
+            rdfs:domain :AfforestationVersion ;
+            rdfs:range :SeedVariety ;
+            rdfs:isDefinedBy "Relates an afforestation to the seed variety that is used for culture within its premices." ;
+            rdfs:label "has culture" .
+
+
+###  https://w3id.org/HHT/Forest#hasCuttingMethod
+:hasCuttingMethod rdf:type owl:ObjectProperty ,
+                           owl:FunctionalProperty ;
+                  rdfs:domain :AfforestationVersion ;
+                  rdfs:range :CuttingProcedure ;
+                  rdfs:isDefinedBy "Relates an afforestation to its cutting procedure." ;
+                  rdfs:label "has cutting method" .
+
+
+###  https://w3id.org/HHT/Forest#hasCuttingOfficer
+:hasCuttingOfficer rdf:type owl:ObjectProperty ;
+                   rdfs:domain :CuttingProcedure ;
+                   rdfs:range crm:E39_Actor ;
+                   rdfs:isDefinedBy "Relates a cutting procedure to the actor in charge of it." ;
+                   rdfs:label "has cutting officer" .
+
+
+###  https://w3id.org/HHT/Forest#hasDegradation
+:hasDegradation rdf:type owl:ObjectProperty ;
+                rdfs:domain :AfforestationVersion ;
+                rdfs:range :Degradation ;
+                rdfs:isDefinedBy "Relates an afforestation to its degradations." ;
+                rdfs:label "has degradation" .
+
+
+###  https://w3id.org/HHT/Forest#hasManagement
+:hasManagement rdf:type owl:ObjectProperty ;
+               owl:equivalentProperty :hasManagementPlanning ;
+               rdfs:domain :AfforestationVersion ;
+               rdfs:range :ForestManagement ;
+               rdfs:isDefinedBy "Relates an afforestation to its management rules." ;
+               rdfs:label "has management planning" .
+
+
+###  https://w3id.org/HHT/Forest#hasManagementPlanning
+:hasManagementPlanning rdf:type owl:ObjectProperty ;
+                       rdfs:domain :AfforestationVersion ;
+                       rdfs:range :ForestManagement ;
+                       rdfs:label "has management planning" .
+
+
+###  https://w3id.org/HHT/Forest#hasNobiliaryTitle
+:hasNobiliaryTitle rdf:type owl:ObjectProperty ;
+                   rdfs:domain crm:E39_Actor ;
+                   rdfs:range :NobiliaryTitle ;
+                   rdfs:isDefinedBy "Relates an actor to their nobiliary title." ;
+                   rdfs:label "has nobiliary title" .
+
+
+###  https://w3id.org/HHT/Forest#hasOffice
+:hasOffice rdf:type owl:ObjectProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain crm:E39_Actor ;
+           rdfs:range :Office ;
+           rdfs:label "has office" .
+
+
+###  https://w3id.org/HHT/Forest#hasOwningMode
+:hasOwningMode rdf:type owl:ObjectProperty ,
+                        owl:FunctionalProperty ;
+               rdfs:domain :AfforestationVersion ;
+               rdfs:range :owningMode ;
+               rdfs:isDefinedBy "Relates an afforestation to the way it is owned." ;
+               rdfs:label "has owning mode" .
+
+
+###  https://w3id.org/HHT/Forest#hasOwningType
+:hasOwningType rdf:type owl:ObjectProperty ;
+               rdfs:domain :AfforestationVersion ;
+               rdfs:range :ForestBelonging ;
+               rdfs:isDefinedBy "Relates an afforestation to the way it is owned." ;
+               rdfs:label "has owning type" .
+
+
+###  https://w3id.org/HHT/Forest#hasSowingMethod
+:hasSowingMethod rdf:type owl:ObjectProperty ,
+                          owl:FunctionalProperty ;
+                 rdfs:domain :AfforestationVersion ;
+                 rdfs:range :SowingProcedure ;
+                 rdfs:isDefinedBy "Relates an afforestation to the procedure that should be used for sowing within its premices." ;
+                 rdfs:label "has sowing method" .
+
+
+###  https://w3id.org/HHT/Forest#hasStand
+:hasStand rdf:type owl:ObjectProperty ;
+          rdfs:domain :AfforestationVersion ;
+          rdfs:range :AfforestationStand ;
+          rdfs:isDefinedBy "Relates an afforestation to the state of its tree population." ;
+          rdfs:label "has stand" .
+
+
+###  https://w3id.org/HHT/Forest#hasTrial
+:hasTrial rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:domain :AfforestationVersion ;
+          rdfs:range :ForestTrial ;
+          rdfs:isDefinedBy "Relates an afforestation to the trials revolving around it." ;
+          rdfs:label "has trial" .
+
+
+###  https://w3id.org/HHT/Forest#isArpentedBy
+:isArpentedBy rdf:type owl:ObjectProperty ;
+              rdfs:domain :AfforestationVersion ;
+              rdfs:range crm:E39_Actor ;
+              rdfs:isDefinedBy "Relates an afforestation to the actors that arpented it." ;
+              rdfs:label "is arpented by" .
+
+
+###  https://w3id.org/HHT/Forest#isOfficeOfAfforestation
+:isOfficeOfAfforestation rdf:type owl:ObjectProperty ;
+                         rdfs:domain :Office ;
+                         rdfs:range :AfforestationVersion ;
+                         rdfs:isDefinedBy "Relates an office to the afforestation it has power over." ;
+                         rdfs:label "is office of afforestation" .
+
+
+###  https://w3id.org/HHT/Forest#isOwnedBy
+:isOwnedBy rdf:type owl:ObjectProperty ;
+           owl:inverseOf :isOwnerOf ;
+           rdfs:domain :AfforestationVersion ;
+           rdfs:range crm:E39_Actor ;
+           rdfs:isDefinedBy "Relates an afforestation to the actor owning it." ;
+           rdfs:label "is owned by" .
+
+
+###  https://w3id.org/HHT/Forest#isOwnedSince
+:isOwnedSince rdf:type owl:ObjectProperty ;
+              rdfs:domain :AfforestationVersion ;
+              rdfs:isDefinedBy "Relates an afforestation to its period of owning." ;
+              rdfs:label "is owned since" .
+
+
+###  https://w3id.org/HHT/Forest#isOwnerOf
+:isOwnerOf rdf:type owl:ObjectProperty ;
+           rdfs:domain crm:E39_Actor ;
+           rdfs:range :AfforestationVersion ;
+           rdfs:isDefinedBy "Relates an actor to the afforestations they own." ;
+           rdfs:label "is owner of" .
+
+
+###  https://w3id.org/HHT/Forest#linkedToMaitrise
+:linkedToMaitrise rdf:type owl:ObjectProperty ;
+                  rdfs:domain :FroidourReformationTrial ;
+                  rdfs:range hht:UnitVersion ;
+                  rdfs:isDefinedBy "Relates a trial to the maitrise in which it is judged." ;
+                  rdfs:label "linked to maitrise" .
+
+
+###  https://w3id.org/HHT/Forest#plaintiff
+:plaintiff rdf:type owl:ObjectProperty ;
+           rdfs:domain :FroidourReformationTrial ;
+           rdfs:range crm:E39_Actor ;
+           rdfs:isDefinedBy "Relates a trial to its plaintiff." ;
+           rdfs:label "plaintiff" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/HHT/Forest#AfforestationCategory
+:AfforestationCategory rdf:type owl:DatatypeProperty ,
+                                owl:FunctionalProperty ;
+                       rdfs:domain :AfforestationVersion ;
+                       rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#CuttingAge
+:CuttingAge rdf:type owl:DatatypeProperty ;
+            rdfs:domain :CuttingProcedure ;
+            rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#CuttingAgeMax
+:CuttingAgeMax rdf:type owl:DatatypeProperty ;
+               rdfs:domain :CuttingProcedure ;
+               rdfs:range xsd:integer .
+
+
+###  https://w3id.org/HHT/Forest#CuttingAgeMin
+:CuttingAgeMin rdf:type owl:DatatypeProperty ;
+               rdfs:domain :CuttingProcedure ;
+               rdfs:range xsd:integer .
+
+
+###  https://w3id.org/HHT/Forest#OfficeCategory
+:OfficeCategory rdf:type owl:DatatypeProperty ,
+                         owl:FunctionalProperty ;
+                rdfs:domain :Office ;
+                rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#StandAge
+:StandAge rdf:type owl:DatatypeProperty ;
+          rdfs:domain :AfforestationStand ;
+          rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#TreeMaxAge
+:TreeMaxAge rdf:type owl:DatatypeProperty ;
+            rdfs:domain :ForestManagement ;
+            rdfs:range xsd:integer .
+
+
+###  https://w3id.org/HHT/Forest#TreeMinAge
+:TreeMinAge rdf:type owl:DatatypeProperty ;
+            rdfs:domain :ForestManagement ;
+            rdfs:range xsd:integer .
+
+
+###  https://w3id.org/HHT/Forest#UsageRightConservation
+:UsageRightConservation rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :FroidourReformationTrial ;
+                        rdfs:range xsd:boolean .
+
+
+###  https://w3id.org/HHT/Forest#X
+:X rdf:type owl:DatatypeProperty ,
+            owl:FunctionalProperty ;
+   rdfs:domain :AfforestationVersion ;
+   rdfs:range xsd:float .
+
+
+###  https://w3id.org/HHT/Forest#Y
+:Y rdf:type owl:DatatypeProperty ,
+            owl:FunctionalProperty ;
+   rdfs:domain :AfforestationVersion ;
+   rdfs:range xsd:float .
+
+
+###  https://w3id.org/HHT/Forest#actorAge
+:actorAge rdf:type owl:DatatypeProperty ;
+          rdfs:domain crm:E39_Actor ;
+          rdfs:range xsd:integer .
+
+
+###  https://w3id.org/HHT/Forest#actorReformJudge
+:actorReformJudge rdf:type owl:DatatypeProperty ;
+                  rdfs:domain crm:E39_Actor ;
+                  rdfs:range xsd:boolean .
+
+
+###  https://w3id.org/HHT/Forest#arpentDate
+:arpentDate rdf:type owl:DatatypeProperty ;
+            rdfs:domain :AfforestationVersion ;
+            rdfs:range xsd:dateTime .
+
+
+###  https://w3id.org/HHT/Forest#arpentPeriod
+:arpentPeriod rdf:type owl:DatatypeProperty ;
+              rdfs:domain :AfforestationVersion ;
+              rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#caseReason
+:caseReason rdf:type owl:DatatypeProperty ;
+            rdfs:domain :FroidourReformationTrial ;
+            rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#currentName
+:currentName rdf:type owl:DatatypeProperty ,
+                      owl:FunctionalProperty ;
+             rdfs:domain :Afforestation ,
+                         :AfforestationVersion ;
+             rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#degradationDate
+:degradationDate rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Degradation ;
+                 rdfs:range xsd:date .
+
+
+###  https://w3id.org/HHT/Forest#degradationdescription
+:degradationdescription rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Degradation ;
+                        rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#descriptionOffice
+:descriptionOffice rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Office ;
+                   rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#fineAmount
+:fineAmount rdf:type owl:DatatypeProperty ,
+                     owl:FunctionalProperty ;
+            rdfs:domain :FroidourReformationTrial ;
+            rdfs:range xsd:float .
+
+
+###  https://w3id.org/HHT/Forest#firstName
+:firstName rdf:type owl:DatatypeProperty ;
+           rdfs:domain crm:E39_Actor ;
+           rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#forestOwnerType
+:forestOwnerType rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :AfforestationVersion ;
+                 rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#forestTotalArea
+:forestTotalArea rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :AfforestationVersion ;
+                 rdfs:range xsd:float .
+
+
+###  https://w3id.org/HHT/Forest#functionPeriod
+:functionPeriod rdf:type owl:DatatypeProperty ;
+                rdfs:domain crm:E39_Actor ;
+                rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#generalFund
+:generalFund rdf:type owl:DatatypeProperty ;
+             rdfs:domain :AfforestationVersion ;
+             rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#generalState
+:generalState rdf:type owl:DatatypeProperty ;
+              rdfs:domain :AfforestationVersion ;
+              rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#hasLocality
+:hasLocality rdf:type owl:DatatypeProperty ;
+             rdfs:domain :AfforestationVersion ;
+             rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#hasNeighbouringCity
+:hasNeighbouringCity rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :AfforestationVersion ;
+                     rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#isFired
+:isFired rdf:type owl:DatatypeProperty ,
+                  owl:FunctionalProperty ;
+         rdfs:domain crm:E39_Actor ;
+         rdfs:range xsd:boolean .
+
+
+###  https://w3id.org/HHT/Forest#methodDescription
+:methodDescription rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :ForestManagementProcedure ;
+                   rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#natureCharge
+:natureCharge rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Office ;
+              rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#numberOfSpindles
+:numberOfSpindles rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :CuttingProcedure ;
+                  rdfs:range xsd:integer .
+
+
+###  https://w3id.org/HHT/Forest#numberOfSpindlesCutMax
+:numberOfSpindlesCutMax rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :CuttingProcedure ;
+                        rdfs:range xsd:integer .
+
+
+###  https://w3id.org/HHT/Forest#numberOfSpindlesCutMin
+:numberOfSpindlesCutMin rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :CuttingProcedure ;
+                        rdfs:range xsd:integer .
+
+
+###  https://w3id.org/HHT/Forest#numberYoungPlantedPerYear
+:numberYoungPlantedPerYear rdf:type owl:DatatypeProperty ;
+                           rdfs:domain :SowingProcedure ;
+                           rdfs:range xsd:integer .
+
+
+###  https://w3id.org/HHT/Forest#numberYoungTreesPerOld
+:numberYoungTreesPerOld rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :SowingProcedure ;
+                        rdfs:range xsd:integer .
+
+
+###  https://w3id.org/HHT/Forest#presenceOfCulture
+:presenceOfCulture rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :AfforestationVersion ;
+                   rdfs:range xsd:boolean .
+
+
+###  https://w3id.org/HHT/Forest#replanting
+:replanting rdf:type owl:DatatypeProperty ,
+                     owl:FunctionalProperty ;
+            rdfs:domain :SowingProcedure ;
+            rdfs:range xsd:boolean .
+
+
+###  https://w3id.org/HHT/Forest#sentence
+:sentence rdf:type owl:DatatypeProperty ,
+                   owl:FunctionalProperty ;
+          rdfs:domain :FroidourReformationTrial ;
+          rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#standQualif
+:standQualif rdf:type owl:DatatypeProperty ;
+             rdfs:domain :AfforestationVersion ;
+             rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#title
+:title rdf:type owl:DatatypeProperty ;
+       rdfs:domain :FroidourReformationTrial ;
+       rdfs:range xsd:string .
+
+
+###  https://w3id.org/HHT/Forest#trialDate
+:trialDate rdf:type owl:DatatypeProperty ;
+           rdfs:domain :FroidourReformationTrial ;
+           rdfs:range xsd:date .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.obolibrary.org/obo/BFO_0000002
+<http://purl.obolibrary.org/obo/BFO_0000002> rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000015
+<http://purl.obolibrary.org/obo/BFO_0000015> rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000017
+<http://purl.obolibrary.org/obo/BFO_0000017> rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000019
+<http://purl.obolibrary.org/obo/BFO_0000019> rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000020
+<http://purl.obolibrary.org/obo/BFO_0000020> rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000023
+<http://purl.obolibrary.org/obo/BFO_0000023> rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000029
+<http://purl.obolibrary.org/obo/BFO_0000029> rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000030
+<http://purl.obolibrary.org/obo/BFO_0000030> rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/BFO_0000040
+<http://purl.obolibrary.org/obo/BFO_0000040> rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000033
+<http://purl.obolibrary.org/obo/IAO_0000033> rdf:type owl:Class .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E39_Actor
+crm:E39_Actor rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/org#Role
+<http://www.w3.org/ns/org#Role> rdf:type owl:Class .
+
+
+###  https://w3id.org/HHT#HierarchicalCriterion
+hht:HierarchicalCriterion rdf:type owl:Class .
+
+
+###  https://w3id.org/HHT#Level
+hht:Level rdf:type owl:Class .
+
+
+###  https://w3id.org/HHT#LevelVersion
+hht:LevelVersion rdf:type owl:Class .
+
+
+###  https://w3id.org/HHT#Unit
+hht:Unit rdf:type owl:Class .
+
+
+###  https://w3id.org/HHT#UnitVersion
+hht:UnitVersion rdf:type owl:Class .
+
+
+###  https://w3id.org/HHT/Claim#Claim
+claim:Claim rdf:type owl:Class .
+
+
+###  https://w3id.org/HHT/Forest#AbsenceBaliveauxDegradation
+:AbsenceBaliveauxDegradation rdf:type owl:Class ;
+                             rdfs:subClassOf :Degradation ;
+                             rdfs:comment "Degradation caused by the absence of young trees selected to grow to maturity, compromising the afforestation's ability to regenerate."@en ,
+                                          "Dégradation causée par l'absence de jeunes arbres choisis pour croître jusqu'à maturité, compromettant la capacité du boisement à se régenerer"@fr ;
+                             rdfs:label "AbsenceBaliveauxDegradation"@fr ,
+                                        "degradation absence of spindles"@en .
+
+
+###  https://w3id.org/HHT/Forest#AcornUsageRight
+:AcornUsageRight rdf:type owl:Class ;
+                 rdfs:subClassOf :UsageRight ;
+                 rdfs:comment "A right of use to graze pigs on acorns"@en ,
+                              "Un droit d'usage permettant de faire paître des porcs pour qu'ils se nourissent de glands"@fr ;
+                 rdfs:label "AcornUsageRight"@fr ,
+                            "acorn right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#Afforestation
+:Afforestation rdf:type owl:Class ;
+               rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000029> ,
+                               hht:Unit ;
+               rdfs:comment "afforestation is an area legally defined as a forest, without the obligatory presence of trees or shrubs."@en ,
+                            """boisement est un espace juridiquement défini comme une forêt, sans présence obligatoire d'arbres ou d'arbustes
+(BFO:Site)"""@fr ;
+               rdfs:label "afforestation"@en ,
+                          "boisement"@fr .
+
+
+###  https://w3id.org/HHT/Forest#AfforestationStand
+:AfforestationStand rdf:type owl:Class ;
+                    rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000019> ;
+                    rdfs:comment """AfforestationStand est une qualité d'un boisement situé dans une zone forestière, caractérisant l'une des essences d'arbres ou d'arbustes de ce boisement, leur âge, et leur disposition spatiale.
+
+( BFO:Quality)"""@fr ,
+                                 "forest stand is a quality of a afforestation located in a forested area, characterizing one of its tree or shrub species, their age, and their spatial arrangement."@en ;
+                    rdfs:label "AfforestationStand"@fr ,
+                               "forest stand"@en .
+
+
+###  https://w3id.org/HHT/Forest#AfforestationVersion
+:AfforestationVersion rdf:type owl:Class ;
+                      owl:equivalentClass [ owl:intersectionOf ( hht:UnitVersion
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty hht:isMemberOf ;
+                                                                   owl:someValuesFrom [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty hht:isVersionOf ;
+                                                                                        owl:hasValue :Forest
+                                                                                      ]
+                                                                 ]
+                                                               ) ;
+                                            rdf:type owl:Class
+                                          ] ;
+                      rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000029> ,
+                                      hht:UnitVersion ;
+                      rdfs:comment """AfforestationVersion est une version d'un boisement dans un intervalle de temps défini.
+
+BFO:Site"""@fr ,
+                                   "afforestationVersion is a version of an afforestation within a defined time interval"@en ;
+                      rdfs:label "AfforestationVersion"@fr ,
+                                 "afforestation version"@en .
+
+
+###  https://w3id.org/HHT/Forest#AlbergueEnNatureUsageRight
+:AlbergueEnNatureUsageRight rdf:type owl:Class ;
+                            rdfs:subClassOf :UsageRight ;
+                            rdfs:comment "A right of use allowing you to receive part of the products in kind, such as wood or crops."@en ,
+                                         "Un droit d'usage permettant de recevoir une partie des produits en nature, comme du bois ou des récoltes"@fr ;
+                            rdfs:label "\"Albergue en nature\" right usage"@en ,
+                                       "AlbergueEnNatureUsageRight"@fr .
+
+
+###  https://w3id.org/HHT/Forest#AlbergueUsageRight
+:AlbergueUsageRight rdf:type owl:Class ;
+                    rdfs:subClassOf :UsageRight ;
+                    rdfs:comment "A right of use allowing temporary residence on land"@en ,
+                                 "Un droit d'usage permettant un droit de résidence temporaire sur une terre"@fr ;
+                    rdfs:label "\"Albergue\" right usage"@en ,
+                               "AlbergueUsageRight"@fr .
+
+
+###  https://w3id.org/HHT/Forest#ArpentorReformer
+:ArpentorReformer rdf:type owl:Class ;
+                  owl:equivalentClass [ owl:intersectionOf ( :Reformator
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty :arpents ;
+                                                               owl:someValuesFrom :AfforestationVersion
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
+                                      ] ;
+                  rdfs:comment "A reformer whose job is to survey woodlands"@en ,
+                               "Un Reformator avec pour métier d'arpenter les boisements"@fr ;
+                  rdfs:label "ArpentorReformer"@fr ,
+                             "reformer arpentor"@en .
+
+
+###  https://w3id.org/HHT/Forest#AshUsageRight
+:AshUsageRight rdf:type owl:Class ;
+               rdfs:subClassOf :UsageRight ;
+               rdfs:comment "A right of use to collect ashes from burning wood"@en ,
+                            "Un droit d'usage permettant de ramasser les cendres issues de la combustion du bois"@fr ;
+               rdfs:label "AshUsageRight" ,
+                          "ash right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#BailiffReformator
+:BailiffReformator rdf:type owl:Class ;
+                   rdfs:subClassOf :Reformator ;
+                   rdfs:comment "A reformer with a job as a bailiff"@en ,
+                                "Un réformateur avec pour métier huissier"@fr ;
+                   rdfs:label "BailiffReformator"@fr ,
+                              "reformer bailiff"@en .
+
+
+###  https://w3id.org/HHT/Forest#BrowsingDegradation
+:BrowsingDegradation rdf:type owl:Class ;
+                     rdfs:subClassOf :Degradation ;
+                     rdfs:comment "Degradation caused to young trees and shrubs by grazing animals, obstacle to the development of young trees"@en ,
+                                  "Dégradation causée aux jeunes arbres et arbustes par les animaux broutant, obstacle au développement des jeunes arbres"@fr ;
+                     rdfs:label "BrowsingDegradation"@fr ,
+                                "browsing degradation"@en .
+
+
+###  https://w3id.org/HHT/Forest#CarpenterReformator
+:CarpenterReformator rdf:type owl:Class ;
+                     rdfs:subClassOf :Reformator ;
+                     rdfs:comment "A reformer with a trade as a carpenter"@en ,
+                                  "Un réformateur avec pour métier charpentier"@fr ;
+                     rdfs:label "CarpenterReformator"@fr ,
+                                "carpenter reformer"@en .
+
+
+###  https://w3id.org/HHT/Forest#ChampartUsageRight
+:ChampartUsageRight rdf:type owl:Class ;
+                    rdfs:subClassOf :UsageRight ;
+                    rdfs:comment "A right of use allowing a royalty in kind to be levied on the harvests of a piece of land"@en ,
+                                 "Un droit d'usage permettant une redevance en nature prélevée sur les récoltes d'une terre"@fr ;
+                    rdfs:label "\"champart\" right usage"@en ,
+                               "ChampartUsageRight"@fr .
+
+
+###  https://w3id.org/HHT/Forest#ClearingDegradation
+:ClearingDegradation rdf:type owl:Class ;
+                     rdfs:subClassOf :Degradation ;
+                     rdfs:comment "Degradation due to conversion of forest land to farmland or other uses."@en ,
+                                  "Dégradation liée à la convertion de terres forestières en terres agricoles ou pour d'autres usages."@fr ;
+                     rdfs:label "ClearingDegradation"@fr ,
+                                "Degradation Clearing"@en .
+
+
+###  https://w3id.org/HHT/Forest#ClerkReformator
+:ClerkReformator rdf:type owl:Class ;
+                 rdfs:subClassOf :Reformator ;
+                 rdfs:comment "A reformer with a job as a clerk"@en ,
+                              "Un réformateur avec pour métier greffier"@fr ,
+                              "reformer clerk" ;
+                 rdfs:label "ClerkReformator"@fr .
+
+
+###  https://w3id.org/HHT/Forest#CoalUsageRight
+:CoalUsageRight rdf:type owl:Class ;
+                rdfs:subClassOf :UsageRight ;
+                rdfs:comment "A right of use to make charcoal in the forest"@en ,
+                             "Un droit d'usage permettant de fabriquer du charbon de bois en forêt"@fr ;
+                rdfs:label "CoalUsageRight"@fr ,
+                           "coal right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#CommissionerReformator
+:CommissionerReformator rdf:type owl:Class ;
+                        rdfs:subClassOf :Reformator ;
+                        rdfs:comment "A reformer with a job as commissioner"@en ,
+                                     "Un réformateur avec pour métier commissaire"@fr ;
+                        rdfs:label "CommissionerReformator"@fr ,
+                                   "commissioner reformer"@en .
+
+
+###  https://w3id.org/HHT/Forest#CommitmentUsageRight
+:CommitmentUsageRight rdf:type owl:Class ;
+                      rdfs:subClassOf :UsageRight ;
+                      rdfs:comment "A right of use obtained through the temporary transfer of land in return for a sum of money."@en ,
+                                   "Un droit d'usage obtenu via la cession temporaire d'une terre en contrepartie d'une somme d'argent"@fr ;
+                      rdfs:label "CommitmentUsageRight"@fr ,
+                                 "commitment right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#CoppiceForestManagement
+:CoppiceForestManagement rdf:type owl:Class ;
+                         rdfs:subClassOf :ForestManagement ;
+                         rdfs:comment "Forest management aimed at achieving a forest where mature trees grow under the canopy of young shoots."@en ,
+                                      "Un aménagement forestier visant à obtenir une forêt ou des arbres adultes poussent sous le couvert de jeunes pousses"@fr ;
+                         rdfs:label "Aménagement Futaie sous taillis"@fr ,
+                                    "coppice forest management"@en .
+
+
+###  https://w3id.org/HHT/Forest#CoppiceManagement
+:CoppiceManagement rdf:type owl:Class ;
+                   rdfs:subClassOf :ForestManagement ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :TreeMaxAge ;
+                                     owl:qualifiedCardinality "30"^^xsd:nonNegativeInteger ;
+                                     owl:onDataRange xsd:integer
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :TreeMinAge ;
+                                     owl:qualifiedCardinality "13"^^xsd:nonNegativeInteger ;
+                                     owl:onDataRange xsd:integer
+                                   ] ;
+                   rdfs:comment "Forest management aimed at achieving a forest composed mainly of young shoots and small trees between 13 and 30 years of age, cut regularly to promote regrowth."@en ,
+                                "Un aménagement forestier visant à obtenir une forêt composée principalement de jeunes pousses et de petits arbres ayant entre 13 et 30 ans coupés régulierement pour favoriser la repousse"@fr ;
+                   rdfs:label "Aménagement Taillis"@fr ,
+                              "coppice management"@en .
+
+
+###  https://w3id.org/HHT/Forest#CultureUsageRight
+:CultureUsageRight rdf:type owl:Class ;
+                   rdfs:subClassOf :UsageRight ;
+                   rdfs:comment "A right of use to cultivate a parcel of forest land"@en ,
+                                "Un droit d'usage permettant de cultiver une parcelle de terre forestière"@fr ;
+                   rdfs:label "CultureUsageRight"@fr ,
+                              "culture right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#CuttingProcedure
+:CuttingProcedure rdf:type owl:Class ;
+                  rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000033> ,
+                                  :ForestManagementProcedure ;
+                  rdfs:comment """CuttingProcedure est une procédure de gestion forestière qui utilise une technique ou un ensemble de pratiques définies pour la récolte du bois, optimisant la santé de la forêt et favorisant la régénération des arbres.
+
+(IAO :Directive information entity)"""@fr ,
+                               "cutting procedure is a forest management procedure that uses a defined technique or set of practices for harvesting wood, optimizing forest health and promoting tree regeneration."@en ;
+                  rdfs:label "CuttingProcedure"@fr ,
+                             "cutting procedure"@en .
+
+
+###  https://w3id.org/HHT/Forest#DeadwoodUsageRight
+:DeadwoodUsageRight rdf:type owl:Class ;
+                    rdfs:subClassOf :UsageRight ;
+                    rdfs:comment "A right of use to collect naturally fallen wood"@en ,
+                                 "Un droit d'usage permettant de ramasser le bois tombé naturellement"@fr ;
+                    rdfs:label "DeadwoodUsageRight"@fr ,
+                               "deadwood right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#Degradation
+:Degradation rdf:type owl:Class ;
+             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000015> ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :degradationDate ;
+                               owl:someValuesFrom xsd:date
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :degradationdescription ;
+                               owl:someValuesFrom xsd:string
+                             ] ;
+             rdfs:comment "Degradation is a process of change characterized by a negative alteration in the condition or quality of a woodland, resulting from external or internal factors such as fire, overuse or inappropriate human intervention."@en ,
+                          """dégradation est un processus de changement caractérisé par une altération négative de l'état ou de la qualité d'un boisement, résultant de facteurs externes ou internes comme les incendies, la surutilisation, ou les interventions humaines inappropriées.
+
+(BFO:Process : Si l'on considère dégradation comme un ensemble d'événements ou d'activités qui se déroulent dans le temps, résultant en une altération négative de l'état ou de la qualité d'un boisement due à divers facteurs)"""@fr ;
+             rdfs:label "degradation"@en ,
+                        "degradation"@fr .
+
+
+###  https://w3id.org/HHT/Forest#DisgraceDegradation
+:DisgraceDegradation rdf:type owl:Class ;
+                     rdfs:subClassOf :Degradation ;
+                     rdfs:comment "Damage caused to a tree or part of a forest by harmful human practices or natural events"@en ,
+                                  "Dégradation causée à un arbre ou une partie de la forêt par des pratiques humaines nuisibles ou des événements naturels"@fr ;
+                     rdfs:label "DisgraceDegradation"@fr ,
+                                "disgrace degradation"@en .
+
+
+###  https://w3id.org/HHT/Forest#DryBranchesUsageRights
+:DryBranchesUsageRights rdf:type owl:Class ;
+                        rdfs:subClassOf :UsageRight ;
+                        rdfs:comment "A right of use to collect dead branches"@en ,
+                                     "Un droit d'usage permettant de collecter des branches mortes"@fr ;
+                        rdfs:label "DryBranchesUsageRights"@fr ,
+                                   "dry branches right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#EcclesiasticalBelonging
+:EcclesiasticalBelonging rdf:type owl:Class ;
+                         rdfs:subClassOf :ForestBelonging ;
+                         rdfs:comment "Ecclesiastical belonging is a forest belonging owned by one or more ecclesiastics."@en ,
+                                      "EcclesiasticalBelonging est une ForestBelonging avec pour propriétaire un ou des écclésiastiques"@fr ;
+                         rdfs:label "Ecclesiastical belonging"@en ,
+                                    "EcclesiasticalBelonging"@fr .
+
+
+###  https://w3id.org/HHT/Forest#EmptyPlaceManagement
+:EmptyPlaceManagement rdf:type owl:Class ;
+                      rdfs:subClassOf :ForestManagement ;
+                      rdfs:comment "Forest management aimed at achieving a treeless zone, which can result from logging or natural disasters."@en ,
+                                   "Un aménagement forestier visant à obtenir une zone sans arbres, pouvant résulter de coupes ou de catastrophes naturelles"@fr ;
+                      rdfs:label "Aménagement Place vide"@fr ,
+                                 "empty place management"@en .
+
+
+###  https://w3id.org/HHT/Forest#EmptyPlacesDegradation
+:EmptyPlacesDegradation rdf:type owl:Class ;
+                        rdfs:subClassOf :Degradation ;
+                        rdfs:comment "Degradation associated with open treeless areas, either naturally formed or created by human activity."@en ,
+                                     "Dégradation liée à des zones dégagées sans arbres, soit naturellement formées soit crées par l'activité humaine"@fr ;
+                        rdfs:label "EmptyPlacesDegradation"@fr ,
+                                   "degradation Empty Places"@en .
+
+
+###  https://w3id.org/HHT/Forest#EnfeoffmentUsageRight
+:EnfeoffmentUsageRight rdf:type owl:Class ;
+                       rdfs:subClassOf :UsageRight ;
+                       rdfs:comment "A right of use describing the granting of land in fee to a vassal"@en ,
+                                    "Un droit d'usage décrivant l'attribution d'une terre en fief à un vassal"@fr ;
+                       rdfs:label "EnfeoffmentUsageRight"@fr ,
+                                  "enfeoffment right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#ExpertReformator
+:ExpertReformator rdf:type owl:Class ;
+                  rdfs:subClassOf :Reformator ;
+                  rdfs:comment "A reformer present as an expert"@en ,
+                               "Un réformateur présent en qualité d'expert"@fr ;
+                  rdfs:label "ExpertReformator"@fr ,
+                             "expert reformer"@en .
+
+
+###  https://w3id.org/HHT/Forest#FallenWoodUsageRight
+:FallenWoodUsageRight rdf:type owl:Class ;
+                      rdfs:subClassOf :UsageRight ;
+                      rdfs:comment "A right of use to collect fallen or dead wood in the forest"@en ,
+                                   "Un droit d'usage permettant de ramasser du bois tombé ou mort dans la forêt"@fr ;
+                      rdfs:label "UsageRight Bois mort"@fr ,
+                                 "fallen wood right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#FarmlandManagement
+:FarmlandManagement rdf:type owl:Class ;
+                    rdfs:subClassOf :ForestManagement ;
+                    rdfs:comment "Forest management aimed at clearing forest areas and converting them into farmland"@en ,
+                                 "Un aménagement forestier visant à obtenir des zones de forêt défrichées et transformées en terres agricoles"@fr ;
+                    rdfs:label "Aménagement Terre cultivée"@fr ,
+                               "farmland development"@en .
+
+
+###  https://w3id.org/HHT/Forest#FieldBeastsUsageRight
+:FieldBeastsUsageRight rdf:type owl:Class ;
+                       rdfs:subClassOf :UsageRight ;
+                       rdfs:comment "A right of use allowing animals to be kept for manure and land maintenance."@en ,
+                                    "Un droit d'usage permettant d'avoir des animaux gardés pour leur fumier et l'entretien des terres"@fr ;
+                       rdfs:label "FieldBeastsUsageRight"@fr ,
+                                  "beasts of the field right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#FieldDegradation
+:FieldDegradation rdf:type owl:Class ;
+                  rdfs:subClassOf :Degradation ;
+                  rdfs:comment "Degradation linked to the presence of grassy areas at the edge of or within the forest"@en ,
+                               "Dégradation liée à la présence d'étendue herbeuse en bordure ou au sein de la forêt"@fr ;
+                  rdfs:label "FieldDegradation"@fr ,
+                             "field degradation"@en .
+
+
+###  https://w3id.org/HHT/Forest#FireDegradation
+:FireDegradation rdf:type owl:Class ;
+                 rdfs:subClassOf :Degradation ;
+                 rdfs:comment "Degradation caused by uncontrolled burning of forest vegetation"@en ,
+                              "Dégradation liée à la combustion incontrolée de la végétation forestière"@fr ;
+                 rdfs:label "FireDegradation"@fr ,
+                            "fire degradation"@en .
+
+
+###  https://w3id.org/HHT/Forest#FishingUsageRight
+:FishingUsageRight rdf:type owl:Class ;
+                   rdfs:subClassOf :UsageRight ;
+                   rdfs:comment "A right of use to fish in forest waters"@en ,
+                                "Un droit d'usage permettant de pêcher dans les eaux forestières"@fr ;
+                   rdfs:label "FishingUsageRight"@fr ,
+                              "fishing right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#ForestBelonging
+:ForestBelonging rdf:type owl:Class ;
+                 rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000020> ;
+                 rdfs:comment """ForestBelonging est une propriété d'appartenance de la forêt caractérisant à qui appartient la forêt.
+(BFO:specifically dependent continuant )"""@fr ,
+                              "forest belonging is a forest ownership property characterizing who owns the forest."@en ;
+                 rdfs:label "ForestBelonging"@fr ,
+                            "forest belonging"@en .
+
+
+###  https://w3id.org/HHT/Forest#ForestManagement
+:ForestManagement rdf:type owl:Class ;
+                  rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000015> ;
+                  rdfs:comment """ForestManagement est une action ou un ensemble d'actions mis en place modifiant l'espace forestier pour atteindre des objectifs spécifiques tels que la conservation de la biodiversité, la production de bois, la création d'espaces pour l'agriculture ou l'élevage. 
+
+( BFO:Process : Les actions d'aménagement forestier sont planifiées, organisées et exécutées selon des objectifs spécifiques définis par des gestionnaires ou des propriétaires forestiers)."""@fr ,
+                               "forest management is an action or set of actions implemented to modify the forest area in order to achieve specific objectives, such as biodiversity conservation, timber production, or the creation of space for agriculture or livestock farming."@en ;
+                  rdfs:label "Aménagement Forestier"@fr ,
+                             "forest management"@en .
+
+
+###  https://w3id.org/HHT/Forest#ForestManagementProcedure
+:ForestManagementProcedure rdf:type owl:Class ;
+                           rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000033> ;
+                           rdfs:comment """ForestManagementProcedure est une procédure caractérisée par un ensemble ordonné d'étapes ou de principes, conçus spécifiquement pour atteindre un objectif ou résoudre un problème.
+
+(IAO:directive information entity)"""@fr ,
+                                        "forest management procedure is a procedure characterized by an ordered set of steps or principles, designed specifically to achieve an objective or solve a problem."@en ;
+                           rdfs:label "ForestManagementProcedure"@fr ,
+                                      "forest management procedure"@en .
+
+
+###  https://w3id.org/HHT/Forest#ForestManagementXVIIeme
+:ForestManagementXVIIeme rdf:type owl:Class ;
+                         rdfs:subClassOf :ForestManagement ;
+                         rdfs:comment "Forest management aimed at recutting overgrown woodland and restocking vacant and uncultivated areas."@en ,
+                                      "Un aménagement forestier visant au recépage des bois abroutis et repeuplement des places vaines et vagues"@fr ;
+                         rdfs:label "Aménagement Forestier XVIIème"@fr ,
+                                    "forest management 17th century"@fr .
+
+
+###  https://w3id.org/HHT/Forest#ForestTrial
+:ForestTrial rdf:type owl:Class ;
+             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000015> ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :trialDate ;
+                               owl:someValuesFrom xsd:date
+                             ] ;
+             rdfs:comment "A forest lawsuit is a Claim concerning at least one afforestationVersion aimed at legally resolving a dispute between parties."@en ,
+                          "Un ForestTrial est un Claim concernant au moins un AfforestationVersion visant à résoudre juridiquement un litige entre parties."@fr ;
+             rdfs:label "ForestTrial"@fr ,
+                        "forest lawsuit"@en .
+
+
+###  https://w3id.org/HHT/Forest#ForestryPersonnelReformator
+:ForestryPersonnelReformator rdf:type owl:Class ;
+                             rdfs:subClassOf :Reformator ;
+                             rdfs:comment "A reformer with a load of forestry staff"@en ,
+                                          "Un réformateur avec la charge de personnel forestier"@fr ;
+                             rdfs:label "ForestryPersonnelReformator"@fr ,
+                                        "reformer forestry personnel"@en .
+
+
+###  https://w3id.org/HHT/Forest#ForestryUsageRight
+:ForestryUsageRight rdf:type owl:Class ;
+                    rdfs:subClassOf :UsageRight ;
+                    rdfs:comment "A right to use the forest for activities such as logging"@en ,
+                                 "Un droit d'usage permettant d'utiliser la forêt pour des activités comme la coupe de bois"@fr ;
+                    rdfs:label "ForestryUsageRight"@fr ,
+                               "forestry right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#FroidourReformationTrial
+:FroidourReformationTrial rdf:type owl:Class ;
+                          rdfs:subClassOf :ForestTrial ;
+                          rdfs:comment "A forest lawsuit aimed at legally resolving a dispute between parties during the Froidour reformation (1665-1673)."@en ,
+                                       "Froidour Reformation Lawsuit"@en ,
+                                       "Un procès des forêts visant à résoudre juridiquement un litige entre parties durant la réformation de Froidour (1665-1673)."@fr ;
+                          rdfs:label "FroidourReformationTrial"@fr .
+
+
+###  https://w3id.org/HHT/Forest#GoatUsageRight
+:GoatUsageRight rdf:type owl:Class ;
+                rdfs:subClassOf :UsageRight ;
+                rdfs:comment "A right of use to graze goats"@en ,
+                             "Un droit d'usage permettant de faire paître des chèvres"@fr ;
+                rdfs:label "GoatUsageRight"@fr ,
+                           "goat right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#GrazingUsageRight
+:GrazingUsageRight rdf:type owl:Class ;
+                   rdfs:subClassOf :UsageRight ;
+                   rdfs:comment "A right of use allowing animals to graze in forest meadows"@en ,
+                                "Un droit d'usage permettant de faire paître des animaux dans les prairies forestières"@fr ;
+                   rdfs:label "GrazingUsageRight"@fr ,
+                              "grazing right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#GreenLumberUsageRight
+:GreenLumberUsageRight rdf:type owl:Class ;
+                       rdfs:subClassOf :UsageRight ;
+                       rdfs:comment "A right of use to cut standing timber"@en ,
+                                    "Un droit d'usage permettant de couper du bois encore sur pied"@fr ;
+                       rdfs:label "UsageRight Bois vert"@fr ,
+                                  "green lumber right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#HuntingUsageRight
+:HuntingUsageRight rdf:type owl:Class ;
+                   rdfs:subClassOf :UsageRight ;
+                   rdfs:comment "A right of use to hunt game in the forest"@en ,
+                                "Un droit d'usage permettant de chasser le gibier en forêt"@fr ;
+                   rdfs:label "HuntingUsageRight"@fr ,
+                              "hunt right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#LargeCattleUsageRight
+:LargeCattleUsageRight rdf:type owl:Class ;
+                       rdfs:subClassOf :UsageRight ;
+                       rdfs:comment "A right of use to graze large animals such as oxen or horses"@en ,
+                                    "Un droit d'usage permettant de faire paître des animaux de grande taille comme des boeufs ou des chevaux"@fr ;
+                       rdfs:label "LargeCattleUsageRight"@fr ,
+                                  "large cattle"@en .
+
+
+###  https://w3id.org/HHT/Forest#LargeTreeManagement
+:LargeTreeManagement rdf:type owl:Class ;
+                     rdfs:subClassOf :ForestManagement ;
+                     rdfs:comment "Forest management aimed at obtaining mature trees that have reached a large size"@en ,
+                                  "Un aménagement forestier visant à obtenir des arbres matures qui ont atteint une grande taille"@fr ;
+                     rdfs:label "Aménagement Gros arbres"@fr ,
+                                "large tree installation"@en .
+
+
+###  https://w3id.org/HHT/Forest#LawyerReformator
+:LawyerReformator rdf:type owl:Class ;
+                  rdfs:subClassOf :Reformator ;
+                  rdfs:comment "A reformer with a career as a lawyer"@en ,
+                               "Un réformateur avec comme métier avocat"@fr ;
+                  rdfs:label "LawyerReformator"@fr ,
+                             "lawyer reformer"@en .
+
+
+###  https://w3id.org/HHT/Forest#MerrainUsageRight
+:MerrainUsageRight rdf:type owl:Class ;
+                   rdfs:subClassOf :UsageRight ;
+                   rdfs:comment "A right of use to cut wood for barrels"@en ,
+                                "Un droit d'usage permettant de couper du bois destiné à fabriquer des tonneaux"@fr ;
+                   rdfs:label "MerrainUsageRight"@fr ,
+                              "merrain right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#MilitaryReformator
+:MilitaryReformator rdf:type owl:Class ;
+                    rdfs:subClassOf :Reformator ;
+                    rdfs:comment "A reformer with a military career"@en ,
+                                 "Un réformateur avec pour métier militaire"@fr ;
+                    rdfs:label "MilitaryReformator"@fr ,
+                               "military reformer"@en .
+
+
+###  https://w3id.org/HHT/Forest#MixedCoppiceHighForestManagement
+:MixedCoppiceHighForestManagement rdf:type owl:Class ;
+                                  rdfs:subClassOf :ForestManagement ;
+                                  rdfs:comment "Forest management aimed at achieving a forest that combines coppice and high forest zones."@en ,
+                                               "Un aménagement forestier visant à obtenir une forêt qui combine des zones de taillis et des zones de futaie"@fr ;
+                                  rdfs:label "Aménagement Taillis futaie mélangés"@fr ,
+                                             "mixed coppice and high forest management"@en .
+
+
+###  https://w3id.org/HHT/Forest#MixedCoppiceManagement
+:MixedCoppiceManagement rdf:type owl:Class ;
+                        rdfs:subClassOf :ForestManagement ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :TreeMaxAge ;
+                                          owl:qualifiedCardinality "30"^^xsd:nonNegativeInteger ;
+                                          owl:onDataRange xsd:integer
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :TreeMinAge ;
+                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                          owl:onDataRange xsd:integer
+                                        ] ;
+                        rdfs:comment "Forest management aimed at obtaining coppice areas where different species of trees and shrubs are combined, between 1 and 30 years old."@en ,
+                                     "Un aménagement forestier visant à obtenir des zones de taillis ou differentes especes d'arbres et d'arbustes sont combinés ayant entre 1 et 30 ans"@fr ;
+                        rdfs:label "Aménagement Taillis mixte"@fr ,
+                                   "mixed coppice management"@en .
+
+
+###  https://w3id.org/HHT/Forest#NobiliaryBelonging
+:NobiliaryBelonging rdf:type owl:Class ;
+                    rdfs:subClassOf :ForestBelonging ;
+                    rdfs:comment "NobiliaryBelonging est une ForestBelonging avec pour propriétaire un noble"@fr ;
+                    rdfs:label "NobiliaryBelonging"@fr ,
+                               "noble belonging"@en ,
+                               "noble belonging is a forest belonging owned by a noble"@en .
+
+
+###  https://w3id.org/HHT/Forest#NobiliaryTitle
+:NobiliaryTitle rdf:type owl:Class ;
+                rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000023> ,
+                                <http://www.w3.org/ns/org#Role> ;
+                rdfs:comment """NobiliaryTitle est un statut social qui représente une reconnaissance formelle de l'appartenance à la noblesse, souvent associée à des privilèges spécifiques et pouvant être transmise par héritage ou octroi, distinguant ainsi les individus ou les familles au sein de la société.
+
+(BFO:Role)"""@fr ,
+                             "nobiliary title is a social status that represents formal recognition of membership of the nobility, often associated with specific privileges, and can be transmitted by inheritance or grant, thus distinguishing individuals or families within society."@en ;
+                rdfs:label "NobiliaryTitle"@fr ,
+                           "nobiliary title"@en .
+
+
+###  https://w3id.org/HHT/Forest#Office
+:Office rdf:type owl:Class ;
+        rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000023> ,
+                        <http://www.w3.org/ns/org#Role> ;
+        rdfs:comment """Office est une fonction ou un rôle caractérisé par un ensemble de devoirs et de responsabilités assignés à une position ou à un poste, visant à contribuer au bon fonctionnement d'une organisation ou d'une société.
+
+(BFO:Role)"""@fr ,
+                     "Office is a function or role characterized by a set of duties and responsibilities assigned to a position or job, designed to contribute to the smooth running of an organization or company"@en ;
+        rdfs:label "Office"@en ,
+                   "Office"@fr .
+
+
+###  https://w3id.org/HHT/Forest#OldHighForestManagement
+:OldHighForestManagement rdf:type owl:Class ;
+                         rdfs:subClassOf :ForestManagement ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty :TreeMaxAge ;
+                                           owl:qualifiedCardinality "121"^^xsd:nonNegativeInteger ;
+                                           owl:onDataRange xsd:integer
+                                         ] ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty :TreeMaxAge ;
+                                           owl:qualifiedCardinality "200"^^xsd:nonNegativeInteger ;
+                                           owl:onDataRange xsd:integer
+                                         ] ;
+                         rdfs:comment "Forest management aimed at achieving a forest composed of large mature trees that have reached a considerable size and an age of between 121 and 200 years."@en ,
+                                      "Un aménagement forestier visant à obtenir une forêt composée de grands arbres matures qui ont atteint une taille considérable et un age entre 121 et 200 ans"@fr ;
+                         rdfs:label "Aménagement Vieille haute futaie"@fr ,
+                                    "old high forest management"@en .
+
+
+###  https://w3id.org/HHT/Forest#OrdinaryOfficerReformator
+:OrdinaryOfficerReformator rdf:type owl:Class ;
+                           rdfs:subClassOf :Reformator ;
+                           rdfs:comment "A reformer with a job as an ordinary Officer"@en ,
+                                        "Un réformateur avec pour métier officier ordinaire"@fr ;
+                           rdfs:label "OrdinaryOfficerReformator"@fr ,
+                                      "reformer ordinary Officer"@en .
+
+
+###  https://w3id.org/HHT/Forest#Owner
+:Owner rdf:type owl:Class ;
+       owl:equivalentClass [ owl:intersectionOf ( crm:E39_Actor
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty :isOwnerOf ;
+                                                    owl:someValuesFrom :AfforestationVersion
+                                                  ]
+                                                ) ;
+                             rdf:type owl:Class
+                           ] ;
+       rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000030> ;
+       rdfs:comment "an owner is an agent who possesses the legal right to a property or asset, conferring control and responsibility for its use and disposal"@en ,
+                    """un propriétaire est un agent qui possède le droit légal sur une propriété ou un bien, lui conférant le contrôle et la responsabilité de l'utilisation et de la disposition de ce bien.
+
+(BFO:objet)"""@fr ;
+       rdfs:label "Owner"@fr ,
+                  "owner"@en .
+
+
+###  https://w3id.org/HHT/Forest#PanageUsageRight
+:PanageUsageRight rdf:type owl:Class ;
+                  rdfs:subClassOf :UsageRight ;
+                  rdfs:comment "A right of use allowing pigs to graze on acorns in the woods"@en ,
+                               "Un droit d'usage permettant de faire paître les porcs dans les bois pour qu'ils se nourissent de glands"@fr ;
+                  rdfs:label "PanageUsageRight"@fr .
+
+
+###  https://w3id.org/HHT/Forest#ParticularBelonging
+:ParticularBelonging rdf:type owl:Class ;
+                     rdfs:subClassOf :ForestBelonging ;
+                     rdfs:comment "ParticularBelonging est une ForestBelonging avec pour propriétaire un particulier"@fr ,
+                                  "particular belonging is a forest belonging owned by a private individual"@en ;
+                     rdfs:label "ParticularBelonging"@fr ,
+                                "particular belonging"@en .
+
+
+###  https://w3id.org/HHT/Forest#PastureUsageRight
+:PastureUsageRight rdf:type owl:Class ;
+                   rdfs:subClassOf :UsageRight ;
+                   rdfs:comment "A right of use allowing cattle to graze in forest meadows"@en ,
+                                "Un droit d'usage permettant de faire paître le bétail dans les prés forestiers"@fr ;
+                   rdfs:label "PastureUsageRight"@fr ,
+                              "pasture right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#PloughingAnimalsUsageRight
+:PloughingAnimalsUsageRight rdf:type owl:Class ;
+                            rdfs:subClassOf :UsageRight ;
+                            rdfs:comment "A right of use allowing animals to be used to plough the fields"@en ,
+                                         "Un droit d'usage permettant d'avoir des animaux utilisés pour labourer les champs"@fr ;
+                            rdfs:label "PloughingAnimalsUsageRight"@fr ,
+                                       "ploughing animals right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#PrepastureManagement
+:PrepastureManagement rdf:type owl:Class ;
+                      rdfs:subClassOf :ForestManagement ;
+                      rdfs:comment "Forest management to create a grassy area for animal grazing"@en ,
+                                   "Un aménagement forestier visant à obtenir une étendue herbeuse utilisée pour le pâturage des animaux"@fr ;
+                      rdfs:label "Aménagement Pré paturage"@fr ,
+                                 "pasture management"@en .
+
+
+###  https://w3id.org/HHT/Forest#RecepageProcedure
+:RecepageProcedure rdf:type owl:Class ;
+                   rdfs:subClassOf :CuttingProcedure ;
+                   rdfs:comment """RecepageProcedure est une procédure de coupe qui consiste à couper un arbre près du sol afin d'encourager la repousse de plusieurs tiges à partir de la souche, dans le but de régénérer le boisement ou de produire certaines ressources forestières de manière durable.
+
+(IAO :Directive information entity)"""@fr ,
+                                "trimming procedure is a cutting procedure that consists of cutting a tree close to the ground to encourage the regrowth of several stems from the stump, with the aim of regenerating the afforestation or producing certain forest resources in a sustainable way."@en ;
+                   rdfs:label "RecepageProcedure"@fr ,
+                              "trimming procedure"@en .
+
+
+###  https://w3id.org/HHT/Forest#Reformator
+:Reformator rdf:type owl:Class ;
+            rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000030> ,
+                            crm:E39_Actor ;
+            rdfs:comment """Reformator est un agent ayant participé à la réformation
+
+(BFO:objet)"""@fr ,
+                         "Reformator is an agent who has taken part in the Reformation"@en ;
+            rdfs:label "Reformator"@fr ,
+                       "reformer"@en .
+
+
+###  https://w3id.org/HHT/Forest#RentUsageRight
+:RentUsageRight rdf:type owl:Class ;
+                rdfs:subClassOf :UsageRight ;
+                rdfs:comment "A right of use allowing land to be leased for a rent"@en ,
+                             "Un droit d'usage permettant de louer une terre moyennant un loyer"@fr ;
+                rdfs:label "RentUsageRight"@fr ,
+                           "rent right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#RoyalBelonging
+:RoyalBelonging rdf:type owl:Class ;
+                rdfs:subClassOf :ForestBelonging ;
+                rdfs:comment "RoyalBelonging est une ForestBelonging avec pour propriétaire le roi"@fr ,
+                             "royal belonging is a forest belonging owned by the king"@en ;
+                rdfs:label "Royal belonging"@en ,
+                           "RoyalBelonging"@fr .
+
+
+###  https://w3id.org/HHT/Forest#SaleToForeignersUsageRight
+:SaleToForeignersUsageRight rdf:type owl:Class ;
+                            rdfs:subClassOf :UsageRight ;
+                            rdfs:comment "A right of use to sell forest products to people outside the community"@en ,
+                                         "Un droit d'usage permettant de vendre des produits forestiers à des personnes extérieures à la communauté"@fr ;
+                            rdfs:label "SaleToForeignersUsageRight"@fr ,
+                                       "sale to foreigners"@en .
+
+
+###  https://w3id.org/HHT/Forest#SecretaryReformator
+:SecretaryReformator rdf:type owl:Class ;
+                     rdfs:subClassOf :Reformator ;
+                     rdfs:comment "A reformer with a secretarial profession"@en ,
+                                  "Un réformateur avec pour métier secrétaire"@fr ;
+                     rdfs:label "SecretaryReformator"@fr ,
+                                "secretarial reformer"@en .
+
+
+###  https://w3id.org/HHT/Forest#SeedVariety
+:SeedVariety rdf:type owl:Class ;
+             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000040> ;
+             rdfs:comment "A variety of seed planted in a forest, characterized by its genetic properties and its needs in terms of climate and soil."@en ,
+                          """Une variété de semence plantée dans un boisement, caractérisée par ses propriétés génétiques et ses besoins en termes de climat et de sol.
+
+(BFO:MaterialEntity)"""@fr ;
+             rdfs:label "seed variety"@en ,
+                        "variété de semence"@fr .
+
+
+###  https://w3id.org/HHT/Forest#SemiWoodlandManagement
+:SemiWoodlandManagement rdf:type owl:Class ;
+                        rdfs:subClassOf :ForestManagement ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :TreeMaxAge ;
+                                          owl:qualifiedCardinality "60"^^xsd:nonNegativeInteger ;
+                                          owl:onDataRange xsd:integer
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :TreeMinAge ;
+                                          owl:qualifiedCardinality "31"^^xsd:nonNegativeInteger ;
+                                          owl:onDataRange xsd:integer
+                                        ] ;
+                        rdfs:comment "Forest management aimed at achieving a forest composed of young trees and mature growing trees between 31 and 60 years old."@en ,
+                                     "Un aménagement forestier visant à obtenir une forêt composée de jeunes arbres et d'arbres adultes en cours de croissance ayant entre 31 et 60 ans"@fr ;
+                        rdfs:label "Aménagement Demi-futaie"@fr ,
+                                   "semi-woodland development"@en .
+
+
+###  https://w3id.org/HHT/Forest#SnowDegradation
+:SnowDegradation rdf:type owl:Class ;
+                 rdfs:subClassOf :Degradation ;
+                 rdfs:comment "Degradation due to snow damage"@en ,
+                              "Dégradation liée à des dommages causés par la neige"@fr ;
+                 rdfs:label "SnowDegradation"@fr ,
+                            "snow degradation"@en .
+
+
+###  https://w3id.org/HHT/Forest#SowingProcedure
+:SowingProcedure rdf:type owl:Class ;
+                 rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000033> ,
+                                 :ForestManagementProcedure ;
+                 rdfs:comment """SowingProcedure est une procédure de gestion forestière caractérisée par un ensemble de techniques ou de pratiques pour semer des graines, visant à régénérer ou à établir un peuplement forestier.
+
+(IAO :Directive information entity)"""@fr ,
+                              "sowing procedure is a forest management procedure characterized by a set of techniques or practices for sowing seeds, aimed at regenerating or establishing a forest stand."@en ;
+                 rdfs:label "SowingProcedure"@fr ,
+                            "sowing procedure"@en .
+
+
+###  https://w3id.org/HHT/Forest#SowingUsageRight
+:SowingUsageRight rdf:type owl:Class ;
+                  rdfs:subClassOf :UsageRight ;
+                  rdfs:comment "A right of use to sow seeds in a plot of forest land"@en ,
+                               "Un droit d'usage permettant de semer des graines dans une parcelle de terre forestière"@fr ;
+                  rdfs:label "SowingUsageRight"@fr ,
+                             "sowing right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#SpindleManagement
+:SpindleManagement rdf:type owl:Class ;
+                   rdfs:subClassOf :ForestManagement ;
+                   rdfs:comment "Forest management aimed at selecting young trees to grow into mature trees"@en ,
+                                "Un aménagement forestier visant à sélectionner des jeunes arbres pour qu'ils croîsent et deviennent des arbres matures"@fr ;
+                   rdfs:label "Aménagement Baliveaux"@fr ,
+                              "splindle management"@en .
+
+
+###  https://w3id.org/HHT/Forest#StormDegradation
+:StormDegradation rdf:type owl:Class ;
+                  rdfs:subClassOf :Degradation ;
+                  rdfs:comment "Dégradation liée aux orages, causant des dommages au boisement"@fr ,
+                               "degradation due to damage caused by storms to woodland"@en ;
+                  rdfs:label "Degradation Storms"@en ,
+                             "StormDegradation"@fr .
+
+
+###  https://w3id.org/HHT/Forest#SubdelegateReformator
+:SubdelegateReformator rdf:type owl:Class ;
+                       rdfs:subClassOf :Reformator ;
+                       rdfs:comment "A reformer in the role of subdelegate"@en ,
+                                    "Un réformateur avec un role de subdélégué"@fr ;
+                       rdfs:label "SubdelegateReformator"@fr ,
+                                  "subdelegate reformer"@en .
+
+
+###  https://w3id.org/HHT/Forest#TransportBeastsUsageRight
+:TransportBeastsUsageRight rdf:type owl:Class ;
+                           rdfs:subClassOf :UsageRight ;
+                           rdfs:comment "A right of use for animals used to pull carts or vehicles"@en ,
+                                        "Un droit d'usage permettant d'avoir des animaux utilisés pour tirer des charettes ou des véhicules"@fr ;
+                           rdfs:label "TransportBeastsUsageRight"@fr ,
+                                      "transport beasts right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#TreeShrubsDegradation
+:TreeShrubsDegradation rdf:type owl:Class ;
+                       rdfs:subClassOf :Degradation ;
+                       rdfs:comment "Degradation caused by fallen or felled trees remaining on the forest floor"@en ,
+                                    "Dégradation lié à  la présence d'arbres tombés ou abattus qui restent sur le sol forestier"@fr ;
+                       rdfs:label "Degradation Trees Shrubs"@en ,
+                                  "TreeShrubsDegradation"@fr .
+
+
+###  https://w3id.org/HHT/Forest#TreeSpecies
+:TreeSpecies rdf:type owl:Class ;
+             rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000040> ;
+             rdfs:comment """essenceForestiere est une espèce d'arbre ou d'arbuste.
+
+(BFO : MaterialEntity)"""@fr ;
+             rdfs:label "essence forestière"@fr ,
+                        "forest species"@en ,
+                        "forest species is a species of tree or shrub."@en .
+
+
+###  https://w3id.org/HHT/Forest#UnderCoppiceManagement
+:UnderCoppiceManagement rdf:type owl:Class ;
+                        rdfs:subClassOf :ForestManagement ;
+                        rdfs:comment "Forest management aimed at achieving a forest where young shoots develop under a canopy of large trees."@en ,
+                                     "Un aménagement forestier visant à obtenir une forêt ou des jeunes pousses se developpent sous un couvert de grands arbres"@fr ;
+                        rdfs:label "Aménagement Taillis sous futaie"@fr .
+
+
+###  https://w3id.org/HHT/Forest#UnregulatedCutDegradation
+:UnregulatedCutDegradation rdf:type owl:Class ;
+                           rdfs:subClassOf :Degradation ;
+                           rdfs:comment "Degradation caused by felling practices that do not respect forest management rules and cycles."@en ,
+                                        "Dégradation liée à des pratiques d'abattage des arbres sans respect des règles et des cycles de gestion forestière"@fr ;
+                           rdfs:label "UnregulatedCutDegradation"@fr ,
+                                      "degradation dereglee cuts"@en .
+
+
+###  https://w3id.org/HHT/Forest#UsageRight
+:UsageRight rdf:type owl:Class ;
+            rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000002> ,
+                            <https://w3id.org/HHT/Right#Right> ;
+            rdfs:comment """UsageRight est un droit qui confère la capacité légale d'utiliser une ressource ou un bien sans en avoir la pleine propriété, souvent soumis à des conditions spécifiques ou des limitations. 
+
+(BFO:Continuant.)"""@fr ,
+                         "right Usage is a right that confers the legal capacity to use a resource or asset without having full ownership of it, often subject to specific conditions or limitations."@en ;
+            rdfs:label "UsageRight"@fr ,
+                       "usage right"@en .
+
+
+###  https://w3id.org/HHT/Forest#VariousBelonging
+:VariousBelonging rdf:type owl:Class ;
+                  rdfs:subClassOf :ForestBelonging ;
+                  rdfs:comment "VariousBelonging est une ForestBelonging avec divers propriétaires"@fr ,
+                               "diverse belonging is a forest belonging with various owners"@en ;
+                  rdfs:label "VariousBelonging"@fr ,
+                             "diverse belonging"@en .
+
+
+###  https://w3id.org/HHT/Forest#WaterUsageRight
+:WaterUsageRight rdf:type owl:Class ;
+                 rdfs:subClassOf :UsageRight ;
+                 rdfs:comment "A right to use the forest's watercourses or ponds"@en ,
+                              "Un droit d'usage permettant d'utiliser les cours d'eau ou les étangs de la forêt"@fr ;
+                 rdfs:label "WaterUsageRight"@fr ,
+                            "water right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#WoodMerchantReformator
+:WoodMerchantReformator rdf:type owl:Class ;
+                        rdfs:subClassOf :Reformator ;
+                        rdfs:comment "A reformer with a trade as a wood merchant"@en ,
+                                     "Un réformateur avec pour métier marchand de bois"@fr ;
+                        rdfs:label "WoodMerchantReformator"@fr ,
+                                   "reformer wood merchant"@en .
+
+
+###  https://w3id.org/HHT/Forest#WoollyBeastsUsageRight
+:WoollyBeastsUsageRight rdf:type owl:Class ;
+                        rdfs:subClassOf :UsageRight ;
+                        rdfs:comment "A right of use for animals bred primarily for wool production"@en ,
+                                     "Un droit d'usage permettant d'avoir des animaux élevés principalement pour la production de laine"@fr ;
+                        rdfs:label "WoollyBeastsUsageRight"@fr ,
+                                   "woolly beasts right usage"@en .
+
+
+###  https://w3id.org/HHT/Forest#YoungCoppiceManagement
+:YoungCoppiceManagement rdf:type owl:Class ;
+                        rdfs:subClassOf :ForestManagement ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :TreeMaxAge ;
+                                          owl:qualifiedCardinality "12"^^xsd:nonNegativeInteger ;
+                                          owl:onDataRange xsd:integer
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :TreeMinAge ;
+                                          owl:qualifiedCardinality "7"^^xsd:nonNegativeInteger ;
+                                          owl:onDataRange xsd:integer
+                                        ] ;
+                        rdfs:comment "Forest management aimed at obtaining a forest composed of very young shoots and small trees between 7 and 12 years old, often after a recent cut."@en ,
+                                     "Un aménagement forestier visant à obtenir une forêt composée de très jeunes pousses et petits arbres ayant entre 7 et 12 ans, souvent après une coupe récente"@fr ;
+                        rdfs:label "Aménagement Jeune taillis"@fr ,
+                                   "young coppice development"@en .
+
+
+###  https://w3id.org/HHT/Forest#YoungHighForestManagement
+:YoungHighForestManagement rdf:type owl:Class ;
+                           rdfs:subClassOf :ForestManagement ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty :TreeMaxAge ;
+                                             owl:qualifiedCardinality "120"^^xsd:nonNegativeInteger ;
+                                             owl:onDataRange xsd:integer
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty :TreeMinAge ;
+                                             owl:qualifiedCardinality "61"^^xsd:nonNegativeInteger ;
+                                             owl:onDataRange xsd:integer
+                                           ] ;
+                           rdfs:comment "Forest management aimed at obtaining a forest composed mainly of young trees that have the potential to become large mature trees between 61 and 120 years old."@en ,
+                                        "Un aménagement forestier visant à obtenir une forêt composé principalement de jeunes arbres qui ont le potentiel de devenir de grands arbres matures ayant entre 61 et 120 ans"@fr ;
+                           rdfs:label "Aménagement Jeune haute futaie"@fr ,
+                                      "young high forest development"@en .
+
+
+###  https://w3id.org/HHT/Forest#YouthManagement
+:YouthManagement rdf:type owl:Class ;
+                 rdfs:subClassOf :ForestManagement ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :TreeMaxAge ;
+                                   owl:qualifiedCardinality "6"^^xsd:nonNegativeInteger ;
+                                   owl:onDataRange xsd:integer
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :TreeMinAge ;
+                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onDataRange xsd:integer
+                                 ] ;
+                 rdfs:comment "Forest management aimed at achieving a forest composed of young trees or trees in the initial growth phase between 1 and 6 years old"@en ,
+                              "Un aménagement forestier visant à obtenir une forêt composée de jeunes arbres ou dans la phase initiale de croissance ayant entre 1 et 6 ans"@fr ;
+                 rdfs:label "Aménagement Jeunesse"@fr ,
+                            "youth development"@en .
+
+
+###  https://w3id.org/HHT/Forest#owningMode
+:owningMode rdf:type owl:Class ;
+            rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000017> ,
+                            <https://w3id.org/HHT/Right#Right> ;
+            rdfs:comment """owningMode est un statut juridique qui désigne la manière dont la propriété ou le contrôle d'un boisement est détenu ou exercé par un agent
+
+(BFO:Disposition : Si l'on considère owningMode comme représentant la prédisposition ou la capacité d'un agent à exercer un certain contrôle ou à détenir un certain statut juridique par rapport à un bien, reflétant comment cet agent peut agir avec ce bien.)"""@fr ;
+            rdfs:label "ownership mode"@en ,
+                       "ownership mode is a legal status that designates the way in which ownership or control of an afforestation is held or exercised by an agent."@en ,
+                       "owningMode"@fr .
+
+
+###  https://w3id.org/HHT/Right#Right
+<https://w3id.org/HHT/Right#Right> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/HHT/Forest#Forest
+:Forest rdf:type owl:NamedIndividual .
+
+
+###  https://w3id.org/HHT/Forest#GrandeMaitrise
+:GrandeMaitrise rdf:type owl:NamedIndividual ,
+                         hht:Level ;
+                hht:hasSubLevel :Maitrise ;
+                hht:isLevelOf :MaitriseJudiciaire .
+
+
+###  https://w3id.org/HHT/Forest#JuridictionsSubalternes
+:JuridictionsSubalternes rdf:type owl:NamedIndividual ,
+                                  hht:Level ;
+                         hht:isLevelOf :MaitriseJudiciaire .
+
+
+###  https://w3id.org/HHT/Forest#Maitrise
+:Maitrise rdf:type owl:NamedIndividual ,
+                   hht:Level ;
+          hht:hasSubLevel :JuridictionsSubalternes ;
+          hht:isLevelOf :MaitriseJudiciaire .
+
+
+###  https://w3id.org/HHT/Forest#MaitriseJudiciaire
+:MaitriseJudiciaire rdf:type owl:NamedIndividual ,
+                             hht:HierarchicalCriterion .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AbsenceBaliveauxDegradation
+                :BrowsingDegradation
+                :ClearingDegradation
+                :DisgraceDegradation
+                :EmptyPlacesDegradation
+                :FieldDegradation
+                :FireDegradation
+                :SnowDegradation
+                :StormDegradation
+                :TreeShrubsDegradation
+                :UnregulatedCutDegradation
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AcornUsageRight
+                :AlbergueEnNatureUsageRight
+                :AlbergueUsageRight
+                :AshUsageRight
+                :ChampartUsageRight
+                :CoalUsageRight
+                :CommitmentUsageRight
+                :CultureUsageRight
+                :DeadwoodUsageRight
+                :DryBranchesUsageRights
+                :EnfeoffmentUsageRight
+                :FallenWoodUsageRight
+                :FieldBeastsUsageRight
+                :FishingUsageRight
+                :ForestryUsageRight
+                :GoatUsageRight
+                :GrazingUsageRight
+                :GreenLumberUsageRight
+                :HuntingUsageRight
+                :LargeCattleUsageRight
+                :MerrainUsageRight
+                :PanageUsageRight
+                :PastureUsageRight
+                :PloughingAnimalsUsageRight
+                :RentUsageRight
+                :SaleToForeignersUsageRight
+                :SowingUsageRight
+                :TransportBeastsUsageRight
+                :WaterUsageRight
+                :WoollyBeastsUsageRight
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

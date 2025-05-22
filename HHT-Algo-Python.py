@@ -12,7 +12,7 @@ def strafter(string, c) :
     return string[i+1:]
 
 startDate=2010
-endDate=2017
+endDate=2016
 
 hhtChange="https://w3id.org/HHT/Change#"
 hht="https://w3id.org/HHT#"

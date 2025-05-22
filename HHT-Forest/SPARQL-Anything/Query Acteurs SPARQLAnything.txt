@@ -1,0 +1,150 @@
+PREFIX fo: <http://www.w3.org/1999/XSL/Format#>
+PREFIX http: <http://www.w3.org/2011/http#>
+PREFIX apf: <http://jena.apache.org/ARQ/property#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ex: <http://example.org/>
+PREFIX hhtchange: <https://w3id.org/HHT/Change#>
+PREFIX hht: <https://w3id.org/HHT#>
+PREFIX claim: <https://w3id.org/HHT/Claim#>
+PREFIX hhtR: <https://w3id.org/HHT/Right#>
+PREFIX forest: <https://w3id.org/HHT/Forest#>
+PREFIX xyz: <http://sparql.xyz/facade-x/data/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fx: <http://sparql.xyz/facade-x/ns/>
+PREFIX apf: <http://jena.apache.org/ARQ/property#>
+PREFIX dhfc: <http://DHFC>
+
+CONSTRUCT {
+  	?acteurEntity dhfc:assertedBy "Sébastien Poublanc".
+    ?acteurEntity dhfc:assertedThrough ?doc.
+    ?acteurEntity forest:firstName ?firstNameActeur2.
+  	?acteurEntity forest:actorAge ?actorAge.
+  	?acteurEntity forest:hasNobiliaryTitle ?NobiliaryTitle2.
+  	?acteurEntity forest:actorResidesIn ?habitatActeur.
+    ?acteurEntity forest:actorLinkedToMaitrise ?maitriseEntity.
+  	?acteurEntity forest:actorHasJob ?metierActeur.
+  	?acteurEntity forest:hasOffice ?OfficeEntity.
+    ?OfficeEntity forest:isOfficeOfAfforestation ?forestEntity4.
+  	?OfficeEntity forest:descriptionOffice ?Office.
+  	?acteurEntity a ?categorieRefEntity.
+  	?OfficeEntity forest:OfficeCategory ?OfficeCategoryEntity.
+  	?OfficeEntity forest:natureCharge ?natureCharge2.
+    ?OfficeEntity forest:functionPeriod ?functionPeriodActeur2.
+    ?OfficeEntity forest:isFired ?renvoye.
+    ?OfficeEntity forest:exerciceOfficePériode ?functionPeriodActeur4.
+    ?OfficeEntity forest:exerciceisOfficeOfAfforestation ?forestEntity.
+    ?OfficeEntity forest:exerciceisOfficeOfAfforestation ?forestEntity2.
+    ?OfficeEntity forest:exerciceisOfficeOfAfforestation ?forestEntity3.
+    
+}WHERE{
+SERVICE <x-sparql-anything:file:///"Mettre ici le path du fichier excel_prosopographie",spreadsheet.headers=true> {
+    OPTIONAL{
+    ?o xyz:Cotes ?doc.
+    }
+	OPTIONAL {
+	   ?o xyz:Pr%25C3%25A9nom ?firstNameActeur.
+       FILTER(?firstNameActeur!= "")
+       BIND(REPLACE(?firstNameActeur," ","_") AS ?firstNameActeur2).
+	}
+    OPTIONAL {
+	   ?o xyz:Titre%2520nobiliaire ?NobiliaryTitle.
+       FILTER(?NobiliaryTitle!= "")
+       BIND(REPLACE(?NobiliaryTitle," ","_") AS ?NobiliaryTitle2).
+	}
+    OPTIONAL {
+	   ?o xyz:%25C3%2582ge ?actorAge.
+       FILTER(?actorAge!= "")
+	}
+    OPTIONAL {
+	   ?o xyz:Habite%2520%25C3%25A0 ?habitatActeur.
+       FILTER(?habitatActeur!= "")
+	}
+    OPTIONAL {
+	   ?o xyz:M%25C3%25A9tier ?metierActeur.
+       FILTER(?metierActeur!= "")
+    }
+    OPTIONAL {
+	   ?o xyz:Ma%25C3%25AEtrise ?maitrise.
+       FILTER(?maitrise!= "")
+       BIND(REPLACE(?maitrise," ","_") AS ?maitrise2).
+       BIND(URI(CONCAT("http://test.org/MaitriseParticuliere",?maitrise2)) AS ?maitriseEntity).
+    }
+    OPTIONAL{
+       ?o xyz:Pr%25C3%25A9nom ?firstNameActeur3.
+       FILTER(?firstNameActeur3!= "")
+       BIND(REPLACE(?firstNameActeur3," ","_") AS ?firstNameActeur4).
+       ?o xyz:Nom ?nomActeur.
+       FILTER(?nomActeur!= "")
+       BIND(REPLACE(?nomActeur," ","_") AS ?nomActeur2).
+       BIND(URI(CONCAT("http://test.org/Acteur",?nomActeur2,?firstNameActeur4)) AS ?acteurEntity).
+    }
+     OPTIONAL {
+       ?o xyz:Nom ?nomActeur3.
+       FILTER(?nomActeur3!= "")
+       BIND(REPLACE(?nomActeur3," ","_") AS ?nomActeur4).
+      ?o xyz:Pr%25C3%25A9nom ?firstNameActeur5.
+       FILTER(?firstNameActeur5!= "")
+       BIND(REPLACE(?firstNameActeur5," ","_") AS ?firstNameActeur6).
+       BIND(URI(CONCAT("http://test.org/Office",?nomActeur4,?firstNameActeur6)) AS ?OfficeEntity).
+	   ?o xyz:Office ?Office.
+       FILTER(?Office!= "")
+	}
+    OPTIONAL {
+	   ?o xyz:Cat%25C3%25A9gorie%2520de%2520l%2527officie ?catOffice.
+       FILTER(?catOffice!= "")
+       BIND(REPLACE(?catOffice," ","_") AS ?catOffice2).
+       BIND(URI(CONCAT("http://test.org/",?catOffice2)) AS ?OfficeCategoryEntity).
+	}
+
+    OPTIONAL {
+       ?o xyz:Cat%25C3%25A9gorie%2520r%25C3%25A9formateur ?categorieRef.
+       FILTER(?categorieRef!= "")
+       BIND(REPLACE(?categorieRef," ","_") AS ?categorieRef2).
+       BIND(URI(CONCAT("http://test.org/Reformator",?categorieRef2)) AS ?categorieRefEntity).
+    }
+    
+     OPTIONAL {
+	   ?o xyz:Nature%2520de%2520la%2520charge ?natureCharge.
+       FILTER(?natureCharge!= "")
+       ?natureCharge2 apf:strSplit  ( ?natureCharge "," ).
+	}
+    
+    OPTIONAL {
+       ?o xyz:P%25C3%25A9riode%2520de%2520fonction ?functionPeriodActeur.
+       FILTER(?functionPeriodActeur!= "")
+       ?functionPeriodActeur2 apf:strSplit  ( ?functionPeriodActeur "," ).
+    }
+    
+    OPTIONAL {
+       ?o xyz:Renvoy%25C3%25A9 ?renvoye.
+       FILTER(?renvoye!= "")
+    }
+    
+    OPTIONAL {
+       ?o xyz:Nom ?nomActeur5.
+       FILTER(?nomActeur5!= "")
+       BIND(REPLACE(?nomActeur5," ","_") AS ?nomActeur6).
+      ?o xyz:Pr%25C3%25A9nom ?firstNameActeur7.
+       FILTER(?firstNameActeur7!= "")
+       BIND(REPLACE(?firstNameActeur7," ","_") AS ?firstNameActeur8).
+      
+       ?o xyz:P%25C3%25A9riode%2520de%2520fonction ?functionPeriodActeur3.
+       FILTER(?functionPeriodActeur3!= "")
+       ?functionPeriodActeur4 apf:strSplit  ( ?functionPeriodActeur3 "," ).
+       ?o xyz:Renvoy%25C3%25A9 ?renvoye2.
+       ?o xyz:Lieu%2520d%2527exercice ?lieu.
+       FILTER(?lieu!= "")
+       ?lieu2 apf:strSplit  ( ?lieu ";" ).
+       BIND(REPLACE(?lieu2," ","_") AS ?lieu3).
+       BIND(URI(CONCAT("http://test.org/", ?lieu3)) AS ?forestEntity4).
+       BIND(IF(?functionPeriodActeur4 = "Pré-Réformation (1600-1665)" , "V0","") AS ?version3).
+       BIND(IF(?functionPeriodActeur4 = "Réformation" , "V0","") AS ?version).
+       BIND(IF(?renvoye2 != "Oui" && ?functionPeriodActeur4 = "Post-Réformation", "V1","") AS ?version2).
+       BIND(URI(CONCAT("http://test.org/gestion",?nomActeur6,?firstNameActeur8,?functionPeriodActeur4)) AS ?supervision)
+       BIND(URI(CONCAT("http://test.org/", ?lieu3,?version)) AS ?forestEntity).
+       BIND(URI(CONCAT("http://test.org/", ?lieu3,?version3)) AS ?forestEntity3).
+       BIND(URI(CONCAT("http://test.org/", ?lieu3,?version2)) AS ?forestEntity2).
+    }
+  
+  }}

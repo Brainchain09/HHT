@@ -1,0 +1,412 @@
+Query Boisement-Procès V0
+
+PREFIX fo: <http://www.w3.org/1999/XSL/Format#>
+PREFIX http: <http://www.w3.org/2011/http#>
+PREFIX apf: <http://jena.apache.org/ARQ/property#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ex: <http://example.org/>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX dhfc: <http://DHFC>
+PREFIX hhtchange: <https://w3id.org/HHT/Change#>
+PREFIX hht: <https://w3id.org/HHT#>
+PREFIX claim: <https://w3id.org/HHT/Claim#>
+PREFIX hhtR: <https://w3id.org/HHT/Right#>
+PREFIX forest: <https://w3id.org/HHT/Forest#>
+PREFIX xyz: <http://sparql.xyz/facade-x/data/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fx: <http://sparql.xyz/facade-x/ns/>
+PREFIX apf: <http://jena.apache.org/ARQ/property#>
+
+CONSTRUCT {
+    ?interval a time:interval.
+    ?interval time:hasBeginning "1580-01-01".
+    ?interval time:hasEnd ?dateConvertie.
+    ?forestEntity hht:validityPeriod ?interval.
+  
+  	?forestEntity dhfc:assertedBy "Sébastien Poublanc".
+    ?forestEntity dhfc:assertedThrough ?doc.
+    ?forestEntity a forest:AfforestationVersion.
+    ?forestEntity rdfs:label ?foret.
+  	?forestEntity forest:currentName ?currentName.
+  	?forestEntity forest:AfforestationCategory ?catBois.
+  	?forestEntity hht:isMemberOf ?catBoisEntity.
+  	?forestEntity forest:generalState ?etatForet.
+  	?forestEntity forest:standQualif ?standQualifForetEntity.
+  	?forestEntity forest:generalFund ?fondGeneral.
+  	?forestEntity forest:forestTotalArea ?superficieTotale.
+  
+  	?forestEntity forest:hasStand ?peuplementType.
+  	?peuplementType forest:StandAge ?agePeup.
+    ?peuplementType forest:containsSpecies ?essencePeuplement.
+  
+    ?forestEntity forest:hasManagement ?amenagementEntity.
+    ?amenagementEntity rdfs:label ?amen2.
+    ?amenagementEntity a ?amenagementType.
+  
+  	?forestEntity forest:presenceOfCulture ?presenceOfCulture.
+  	?forestEntity forest:hasCulture ?typeCulture.
+  
+    ?forestEntity forest:hasOwningType ?typeForetEntity.
+  	?forestEntity forest:hasOwningMode ?owningModeEntity.
+  
+  	?forestEntity forest:hasLocality ?localite2.
+  	?forestEntity forest:hasNeighbouringCity ?villeRivEntity.
+    ?typeForetEntity rdfs:label ?typeForet.
+  
+    ?forestEntity forest:hasDegradation ?degradationEntity.
+    ?degradationEntity forest:degradationDate ?dateInc.
+    ?degradationEntity forest:degradationDate ?dateTemp.
+    ?degradationEntity rdfs:label ?degr3.
+  
+  	?forestEntity forest:arpentDate ?dateArpent.
+  	?forestEntity forest:arpentPeriod ?periodeArpent.
+  	?forestEntity forest:isArpentedBy ?arpenteurEntity.
+  	?arpenteurEntity forest:arpents ?forestEntity.
+  
+  	?forestEntity hht:isMemberOf ?grandeMaitriseEntity.
+  	?forestEntity hht:isMemberOf ?maitPartEntity.
+  	?forestEntity hht:isMemberOf ?juriSubEntity.
+  
+  	?grandeMaitriseEntity rdfs:label ?grandeMaitrise.
+  	?maitPartEntity rdfs:label ?maitPart.
+    ?maitEntity hht:hasLevelVersion ?maitPartEntity.
+  	?maitPartEntity hht:hasSuperUnit ?grandeMaitriseEntity.
+  	?juriSubEntity rdfs:label ?juriSub.
+  	?juriSubEntity hht:hasSuperUnit ?maitPartEntity.
+  
+  	?forestEntity forest:X ?x.
+  	?forestEntity forest:Y ?y.  
+  
+  	?forestEntity forest:hasCuttingMethod ?methodeCoupeEntity.
+  	?methodeCoupeEntity forest:methodDescription ?methodeCoupe.
+  	?methodeCoupeEntity forest:CuttingAge ?CuttingAge.
+    ?methodeCoupeEntity forest:numberOfSpindles ?nbBaliArp.
+    ?methodeCoupeEntity forest:CuttingAgeMin ?ageMinBali.
+    ?methodeCoupeEntity forest:CuttingAgeMax ?ageMaxBali.
+    ?methodeCoupeEntity forest:numberOfSpindlesCutMin ?nbCoupeAgeMinBali.
+    ?methodeCoupeEntity forest:numberOfSpindlesCutMax ?nbCoupeAgeMaxBali.
+    ?methodeCoupeEntity forest:hasCuttingOfficer ?officierCoupeEntity.
+    ?methodeCoupeEntity forest:cuttingSpecies ?essence.
+    
+  	?forestEntity forest:hasSowingMethod ?methodeSemageEntity.
+  	?methodeSemageEntity forest:methodDescription ?methodeSemage.
+    ?methodeSemageEntity forest:numberYoungTreesPerOld ?nbArbresParVieil.
+    ?methodeSemageEntity forest:numberYoungPlantedPerYear ?nbJeuneArbreAn.
+    ?methodeSemageEntity forest:replanting ?replanting.
+  
+    ?titreProcesEntity dhfc:assertedBy "Sébastien Poublanc".
+    ?titreProcesEntity dhfc:assertedThrough ?docProces.
+  	?titreProcesEntity a forest:proces.
+  	?titreProcesEntity forest:trialDate ?trialDate.
+    ?pourEntity claim:claims ?titreProcesEntity.
+    ?titreProcesEntity claim:ClaimedBy ?pourEntity.
+    ?foretProcesEntity claim:isInvolvedInClaim ?titreProcesEntity.
+  	?titreProcesEntity forest:for ?pourEntity.
+  	?titreProcesEntity forest:against ?contreEntity.
+  	?foretProcesEntity forest:hasTrial ?titreProcesEntity.
+  	?titreProcesEntity forest:fineAmount ?amende.
+  	?titreProcesEntity forest:sentence ?sentence.
+  	?titreProcesEntity forest:caseReason ?motif.
+  	?titreProcesEntity forest:title ?titulature.
+    ?titreProcesEntity forest:impliqueFemme ?femme.
+  	
+  	
+  	?contreEntity hhtR:possesses ?droitForetActeur.
+    ?droitForetActeur hhtR:over ?foretProcesEntity.
+  	?droitForetActeur a ?typeUsageRightEntity.
+  
+    ?boisEntity a forest:Afforestation.
+    ?boisEntity hht:hasVersion ?forestEntity
+  
+}
+WHERE {
+  SERVICE <x-sparql-anything:file:///"Mettre le path du fichier excel_boisement",spreadsheet.headers=true> {
+    
+    ?o xyz:Cotes%2520Tronqu%25C3%25A9s ?doc.
+    
+    ?o xyz:Noms ?foret.
+    BIND(REPLACE(?foret," ","_") AS ?foret2).
+    BIND(URI(CONCAT("http://test.org/interval",?foret2,"V0")) AS ?interval).
+    BIND(URI(CONCAT("http://test.org/", ?foret2)) AS ?boisEntity).
+    BIND(URI(CONCAT("http://test.org/", ?foret2,"V0")) AS ?forestEntity).
+    BIND(URI(CONCAT("http://test.org/composition", ?foret2)) AS ?compositionEntity).
+    BIND(URI(CONCAT("http://test.org/reglementGestion", ?foret2)) AS ?reglementEntity).
+    OPTIONAL {
+      ?o xyz:Nom%2520Actuel ?currentName.
+      FILTER(?currentName != "")
+    }
+    OPTIONAL {
+      ?o xyz:Cat%25C3%25A9gorie%2520de%2520boisement ?catBois.
+      FILTER(?catBois != "")
+      BIND(URI(CONCAT("http://test.org/", ?catBois)) AS ?catBoisEntity).
+    }
+    
+    OPTIONAL {
+      ?o xyz:Qualificatif_%25C3%25A9tat_for%25C3%25AAt ?standQualifForet.
+      ?standQualifForet2  apf:strSplit  ( ?standQualifForet "," ).
+      FILTER(?standQualifForet2 != "")
+      BIND(URI(CONCAT("http://test.org/", ?standQualifForet2)) AS ?standQualifForetEntity).
+    }
+    
+    OPTIONAL {
+      ?o xyz:%25C3%2589tat%2520g%25C3%25A9n%25C3%25A9ral%2520de%2520la%2520for%25C3%25AAt ?etatForet.
+      FILTER(?etatForet != "")
+    }
+    OPTIONAL {
+      ?o xyz:Fonds%2520g%25C3%25A9n%25C3%25A9ral ?fondGeneral.
+      FILTER(?fondGeneral != "")
+    }
+    OPTIONAL {
+      ?o xyz:Grande%2520ma%25C3%25AEtrise ?grandeMaitrise.
+      FILTER(?grandeMaitrise != "")
+      BIND(REPLACE(?grandeMaitrise," ","_") AS ?grandeMaitrise2).
+      BIND(URI(CONCAT("http://test.org/GrandeMaitrise", ?grandeMaitrise2,"V0")) AS ?grandeMaitriseEntity).
+    }
+    OPTIONAL {
+      ?o xyz:Ma%25C3%25AEtrise%2520particuli%25C3%25A8re%2520avant%2520r%25C3%25A9formation ?maitPart.
+      FILTER(?maitPart != "")
+      BIND(REPLACE(?maitPart," ","_") AS ?maitPart2).
+      BIND(URI(CONCAT("http://test.org/MaitriseParticuliere", ?maitPart2,"V0")) AS ?maitPartEntity).
+      BIND(URI(CONCAT("http://test.org/MaitriseParticuliere", ?maitPart2)) AS ?maitEntity).
+    }
+    OPTIONAL {
+      ?o xyz:Juridiction%2520subalterne ?juriSub.
+      FILTER(?juriSub != "")
+      BIND(REPLACE(?juriSub," ","_") AS ?juriSub2).
+      BIND(URI(CONCAT("http://test.org/Juridiction", ?juriSub2,"V0")) AS ?juriSubEntity).
+    }
+    OPTIONAL {
+      ?o xyz:Mode%2520de%2520Possession ?owningMode.
+      FILTER(?owningMode != "")
+      BIND(REPLACE(?owningMode," ","_") AS ?owningMode2).
+      BIND(URI(CONCAT("http://test.org/", ?owningMode2)) AS ?owningModeEntity).
+    }
+    OPTIONAL {
+      ?o xyz:Superficie%2520totale%2520for%25C3%25AAt%252017e%2520%2528hectares%2529 ?superficieTotale.
+      FILTER(?superficieTotale != "")
+    }
+    OPTIONAL {
+      ?o xyz:Seigneur ?seigneur.
+      FILTER(?seigneur != "")
+    }
+    OPTIONAL {
+      ?o xyz:Localit%25C3%25A9 ?localite.
+      FILTER(?localite != "")
+      BIND(REPLACE(?localite," ","_") AS ?localite2).
+    }
+    OPTIONAL {
+      ?o xyz:Villes%2520riveraines ?villeRiv.
+      FILTER(?villeRiv != "")
+      ?villeRiv2  apf:strSplit  ( ?villeRiv "," ).
+      BIND(REPLACE(?villeRiv2," ","_") AS ?villeRiv3).
+      BIND(URI(CONCAT("http://test.org/", ?villeRiv3)) AS ?villeRivEntity).
+    }
+    OPTIONAL {
+      ?o xyz:Peuplements ?peuplement.
+      FILTER(?peuplement != "")
+      BIND(REPLACE(?peuplement," ","_") AS ?peuplement2).
+      ?peuplement3  apf:strSplit  ( ?peuplement2 "," ).
+      ?o xyz:Noms ?foret7.
+      BIND(REPLACE(?foret7," ","_") AS ?foret8).
+      BIND(URI(CONCAT("http://test.org/",?foret8,?peuplement3)) AS ?peuplementType).
+      BIND(URI(CONCAT("http://test.org/",?peuplement3))AS ?essencePeuplement).
+    }
+    OPTIONAL {
+      ?o xyz:Types%2520de%2520cultures ?typeCulture.
+      FILTER(?typeCulture != "")
+    }
+    OPTIONAL {
+      ?o xyz:Pr%25C3%25A9sence%2520de%2520cultures ?presenceOfCulture.
+      FILTER(?presenceOfCulture != "")
+    }
+    OPTIONAL {
+      ?o xyz:%25C3%2582ge%2520des%2520peuplements ?agePeup.
+      FILTER(?agePeup != "") 
+    }
+    OPTIONAL {
+      ?o xyz:P%25C3%25A9riode%2520d%2527arpentage ?periodeArpent.
+      FILTER(?periodeArpent != "") 
+    }
+    OPTIONAL {
+      ?o xyz:Date%2520Arpentage ?dateArpent.
+      FILTER(?dateArpent != "") 
+    }
+    OPTIONAL {
+      ?o xyz:Arpenteurs ?arpenteur.
+      FILTER(?arpenteur != "") 
+      ?arpenteur2  apf:strSplit  ( ?arpenteur "," ).
+      BIND(URI(CONCAT("http://test.org/", ?arpenteur2)) AS ?arpenteurEntity).
+    }
+    OPTIONAL {
+      ?o xyz:Type%2520de%2520for%25C3%25AAt ?typeForet.
+      FILTER(?typeForet != "")
+      BIND(REPLACE(?typeForet," ","_") AS ?typeForet2).
+      BIND(URI(CONCAT("http://test.org/", ?typeForet2)) AS ?typeForetEntity).
+    }
+    OPTIONAL {
+      ?o xyz:Type%2520de%2520d%25C3%25A9gradations ?degr.
+      FILTER(?degr != "")
+      ?degr3 apf:strSplit  ( ?degr "," ).
+      ?o xyz:Noms ?foret3.
+      BIND(REPLACE(?foret3," ","_") AS ?foret4).
+      BIND(URI(CONCAT("http://test.org/",?degr3,?foret4)) AS ?degradationEntity).
+    }
+    OPTIONAL {
+      ?o xyz:Date%2520incendie ?dateInc.
+      FILTER(?dateInc != "")
+    }
+    OPTIONAL {
+      ?o xyz:Dates%2520temp%25C3%25AAtes ?dateTemp.
+      FILTER(?dateTemp != "")
+    }
+    OPTIONAL {
+      ?o xyz:Am%25C3%25A9nagements ?amen.
+      FILTER(?amen != "")
+      ?amen2  apf:strSplit  ( ?amen "," ).
+      BIND(STRBEFORE(?amen2, "_(") AS ?amen3).
+      ?o xyz:Noms ?foret5.
+      BIND(REPLACE(?foret5," ","_") AS ?foret6).
+      BIND(URI(CONCAT("forest:amenagement", ?amen3)) AS ?amenagementType).
+      BIND(URI(CONCAT("http://test.org/", ?amen3,?foret6)) AS ?amenagementEntity).
+    }
+    OPTIONAL {
+      ?o xyz:Lambert_X ?x.
+      ?o xyz:Lambert_Y ?y.
+      FILTER(?x != "")
+      FILTER(?y != "")
+    }
+    BIND(URI(CONCAT("http://test.org/methodeCoupe", ?foret2)) AS ?methodeCoupeEntity).
+    OPTIONAL {
+      ?o xyz:M%25C3%25A9thode%2520de%2520coupe%2520ancienne ?methodeCoupe.
+      FILTER(?methodeCoupe != "")
+    }
+      OPTIONAL{
+       ?o xyz:%25C3%2582ge%2520de%2520la%2520coupe ?CuttingAge.
+      	FILTER(?CuttingAge!= "")
+      }
+      OPTIONAL{
+       ?o xyz:Nbre%2520de%2520balliveaux%2520par%2520arp ?nbBaliArp.
+      	FILTER(?nbBaliArp!= "")
+      }
+      OPTIONAL{
+       ?o xyz:%25C3%2582ge%2520minimum%2520de%2520coupe%2520des%2520baliveaux ?ageMinBali.
+      	FILTER(?ageMinBali!= "")
+      }
+      OPTIONAL{
+       ?o xyz:%25C3%2582ge%2520maximum%2520de%2520coupe%2520des%2520baliveaux ?ageMaxBali.
+      	FILTER(?ageMaxBali!= "")
+      }
+      OPTIONAL{
+       ?o xyz:Nbre%2520de%2520baliveaux%252Farpent%2520%25C3%25A0%2520couper%2520%25C3%25A0%2520%25C3%25A2ge%2520de%2520coupe%2520minimum ?nbCoupeAgeMinBali.
+      	FILTER(?nbCoupeAgeMinBali!= "")
+      }
+      OPTIONAL{
+       ?o xyz:Nbre%2520de%2520baliveaux%252Farpent%2520%25C3%25A0%2520couper%2520%25C3%25A0%2520%25C3%25A2ge%2520de%2520coupe%2520maximum ?nbCoupeAgeMaxBali.
+       FILTER(?nbCoupeAgeMaxBali!= "")
+      }
+      OPTIONAL{
+       ?o xyz:Officier%2520d%25C3%25A9livrant%2520la%2520coupe ?officierCoupe.
+       FILTER(?officierCoupe!= "")
+       BIND(URI(CONCAT("http://test.org/", ?officierCoupe)) AS ?officierCoupeEntity).
+        
+      }
+      OPTIONAL{
+       ?o xyz:Nbre%2520de%2520pieds%2520d%2527arbres%2520%25C3%25A0%2520couper ?nbPiedsArbresCoupe.
+       FILTER(?nbPiedsArbresCoupe!= "")
+      }
+      OPTIONAL{
+       ?o xyz:Essence ?essence.
+       FILTER(?essence!= "")
+       BIND(URI(CONCAT("http://test.org/", ?essence)) AS ?essenceEntity).
+      }
+    
+      BIND(URI(CONCAT("http://test.org/methodeSemage", ?foret2)) AS ?methodeSemageEntity).
+      OPTIONAL{
+       ?o xyz:replanting ?replanting.
+       FILTER(?replanting!= "")
+      }
+      OPTIONAL{
+       ?o xyz:Semage ?methodeSemage.
+       FILTER(?methodeSemage!= "")
+      }
+    OPTIONAL{
+       ?o xyz:Nbre%2520de%2520jeunes%2520arbres%2520plant%25C3%25A9s%2520pour%2520un%2520vieil ?nbArbresParVieil.
+       FILTER(?nbArbresParVieil!= "")
+      }
+    OPTIONAL{
+       ?o xyz:Nbre%2520de%2520jeunes%2520arbres%2520plant%25C3%25A9s%252Fan ?nbJeuneArbreAn.
+       FILTER(?nbJeuneArbreAn!= "")
+      }
+      
+    
+    
+  }
+  SERVICE <x-sparql-anything:file:///"Mettre ici le path vers le fichier excel_proces",spreadsheet.headers=true> {
+    ?o xyz:cote%2520modifi%25C3%25A9e ?docProces.
+	?o xyz:Titre ?titreProces.
+    BIND(REPLACE(?titreProces," ","_") AS ?titreProces2).
+    BIND(URI(CONCAT("http://test.org/", ?titreProces2)) AS ?titreProcesEntity).
+    
+    OPTIONAL {
+	   ?o xyz:Date ?trialDate.
+       FILTER(?trialDate!= "")
+       BIND(CONCAT(SUBSTR(?trialDate, 7, 4), "-", SUBSTR(?trialDate, 4, 2), "-", SUBSTR(?trialDate, 1, 2)) AS ?dateConvertie)
+	}
+    OPTIONAL {
+       ?o xyz:Homme%2520ou%2520femme ?femme.
+       FILTER(?femme!="")  
+    }
+    OPTIONAL {
+	   ?o xyz:Contre ?nomContre.
+       FILTER(?nomContre!= "")
+       ?nomContre2 apf:strSplit  ( ?nomContre "," ).
+       FILTER(?nomContre2!= "")
+       BIND(REPLACE(?nomContre2," ","_") AS ?nomContre3).
+       BIND(URI(CONCAT("http://test.org/Acteur",?nomContre3)) AS ?contreEntity).
+	}
+    OPTIONAL {
+	   ?o xyz:Pour ?nomPour.
+       FILTER(?nomPour!= "")
+       BIND(REPLACE(?nomPour," ","_") AS ?nomPour2).
+       BIND(URI(CONCAT("http://test.org/",?nomPour2)) AS ?pourEntity).
+	}
+    OPTIONAL {
+	   ?o xyz:For%25C3%25AAts%253A%253ANoms ?foretProces.
+       FILTER(?foretProces!= "")
+       ?foretProces2 apf:strSplit  ( ?foretProces ";" ).
+       BIND(REPLACE(?foretProces2," ","_") AS ?foretProces3).
+       BIND(URI(CONCAT("http://test.org/",?foretProces3,"V0")) AS ?foretProcesEntity).
+	}
+    OPTIONAL {
+	   ?o xyz:Motif%2520du%2520proc%25C3%25A8s ?motif.
+       FILTER(?motif!= "")
+	}
+    OPTIONAL {
+	   ?o xyz:Sentence ?sentence.
+       FILTER(?sentence!= "")
+	}
+    OPTIONAL {
+	   ?o xyz:Amende ?amende.
+       FILTER(?amende!= "")
+	}
+    OPTIONAL {
+	   ?o xyz:Titulature ?titulature.
+       FILTER(?titulature!= "")
+	}
+       
+    OPTIONAL {
+       ?o xyz:Contre ?nomContre4.
+       FILTER(?nomContre4!= "")
+       ?nomContre5 apf:strSplit  ( ?nomContre4 "," ).
+       BIND(REPLACE(?nomContre5," ","_") AS ?nomContre6).
+       
+	   ?o xyz:Type%2520de%2520droits%2520d%2527usage ?UsageRight.
+       FILTER(?UsageRight!= "")
+       ?UsageRight2 apf:strSplit  ( ?UsageRight "," ).
+       BIND(REPLACE(?UsageRight2," ","_") AS ?UsageRight3).
+      BIND(URI(CONCAT("http://test.org/UsageRight",?UsageRight3,?nomContre6,"V0")) AS ?droitForetActeur).
+       BIND(URI(CONCAT("forest:UsageRight",?UsageRight3)) AS ?typeUsageRightEntity).
+       
+	}
+    }}

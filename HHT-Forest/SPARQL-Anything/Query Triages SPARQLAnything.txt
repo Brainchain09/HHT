@@ -1,0 +1,118 @@
+PREFIX fo: <http://www.w3.org/1999/XSL/Format#>
+PREFIX http: <http://www.w3.org/2011/http#>
+PREFIX apf: <http://jena.apache.org/ARQ/property#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ex: <http://example.org/>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX dhfc: <http://DHFC>
+PREFIX hhtchange: <https://w3id.org/HHT/Change#>
+PREFIX hht: <https://w3id.org/HHT#>
+PREFIX claim: <https://w3id.org/HHT/Claim#>
+PREFIX hhtR: <https://w3id.org/HHT/Right#>
+PREFIX forest: <https://w3id.org/HHT/Forest#>
+PREFIX xyz: <http://sparql.xyz/facade-x/data/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fx: <http://sparql.xyz/facade-x/ns/>
+PREFIX apf: <http://jena.apache.org/ARQ/property#>
+
+CONSTRUCT {
+ 
+  	?forestEntity dhfc:assertedBy "Sébastien Poublanc".
+    ?forestEntity dhfc:assertedThrough ?doc.
+    ?forestEntity a forest:AfforestationVersion.
+    ?forestEntity rdfs:label ?foret.
+  	?forestEntity forest:AfforestationCategory "Triage".
+  	?forestEntity hht:isMemberOf <http://test.org/Triage>.
+    ?forestEntity hht:hasUpperUnit ?forestLieeEntity.
+  	?forestEntity forest:generalState ?etatForet.
+  	?forestEntity forest:generalFund ?fondGeneral.
+  	?forestEntity forest:forestTotalArea ?superficieTotale.
+  
+  	?forestEntity forest:hasStand ?peuplementType.
+  	?peuplementType forest:StandAge ?agePeup.
+    ?peuplementType forest:containsSpecies ?essencePeuplement.
+  
+    ?forestEntity forest:hasManagement ?amenagementEntity.
+    ?amenagementEntity rdfs:label ?amen2.
+    ?amenagementEntity a ?amenagementType.
+  
+    ?forestEntity forest:hasDegradation ?degradationEntity.
+    ?degradationEntity rdfs:label ?degr3.
+  
+  	?forestEntity forest:arpentDate ?dateArpent.
+  	?forestEntity hht:isMemberOf ?maitPartEntity.
+  	?maitPartEntity rdfs:label ?maitPart.
+  
+}
+WHERE {
+  SERVICE <x-sparql-anything:file:///"Mettre  le path du fichier triages_reformation",spreadsheet.headers=true> {
+    
+    ?o xyz:Reference ?doc.
+    
+    ?o xyz:Nom ?foret.
+    BIND(REPLACE(?foret," ","_") AS ?foret2).
+    BIND(URI(CONCAT("http://test.org/", ?foret2,"V0")) AS ?forestEntity).
+    OPTIONAL {
+      ?o xyz:Foret ?foretLiee.
+      FILTER(?foretLiee != "")
+      BIND(REPLACE(?foretLiee," ","_") AS ?foretLiee2).
+      BIND(URI(CONCAT("http://test.org/", ?foretLiee2,"V0")) AS ?forestLieeEntity).
+    }  
+    OPTIONAL {
+      ?o xyz:Etat%2520des%2520arbres ?etatForet.
+      FILTER(?etatForet != "")
+    }
+    OPTIONAL {
+      ?o xyz:Fonds ?fondGeneral.
+      FILTER(?fondGeneral != "")
+    }
+   
+    OPTIONAL {
+      ?o xyz:Ma%25C3%25AEtrise ?maitPart.
+      FILTER(?maitPart != "")
+      BIND(REPLACE(?maitPart," ","_") AS ?maitPart2).
+      BIND(URI(CONCAT("http://test.org/MaitriseParticuliere", ?maitPart2)) AS ?maitPartEntity).
+    }
+    OPTIONAL {
+      ?o xyz:Superficie%2520h ?superficieTotale.
+      FILTER(?superficieTotale != "")
+    }
+    OPTIONAL {
+      ?o xyz:Peuplement ?peuplement.
+      FILTER(?peuplement != "")
+      BIND(REPLACE(?peuplement," ","_") AS ?peuplement2).
+      ?peuplement3  apf:strSplit  ( ?peuplement2 "," ).
+      ?o xyz:Nom ?foret7.
+      BIND(REPLACE(?foret7," ","_") AS ?foret8).
+      BIND(URI(CONCAT("http://test.org/",?foret8,?peuplement3)) AS ?peuplementType).
+      BIND(URI(CONCAT("http://test.org/",?peuplement3))AS ?essencePeuplement).
+    }
+    OPTIONAL {
+      ?o xyz:%25C3%2582ge ?agePeup.
+      FILTER(?agePeup != "") 
+    }
+    OPTIONAL {
+      ?o xyz:Ann%25C3%25A9e%2520de%2520visitation ?dateArpent.
+      FILTER(?dateArpent != "") 
+    }
+    OPTIONAL {
+      ?o xyz:D%25C3%25A9gradations ?degr.
+      FILTER(?degr != "")
+      ?degr3 apf:strSplit  ( ?degr "," ).
+      ?o xyz:Nom ?foret3.
+      BIND(REPLACE(?foret3," ","_") AS ?foret4).
+      BIND(URI(CONCAT("http://test.org/",?degr3,?foret4)) AS ?degradationEntity).
+    }
+    
+    OPTIONAL {
+      ?o xyz:Am%25C3%25A9nagement ?amen.
+      FILTER(?amen != "")
+      ?amen2  apf:strSplit  ( ?amen "," ).
+      BIND(STRBEFORE(?amen2, "_(") AS ?amen3).
+      ?o xyz:Nom ?foret5.
+      BIND(REPLACE(?foret5," ","_") AS ?foret6).
+      BIND(URI(CONCAT("forest:amenagement", ?amen3)) AS ?amenagementType).
+      BIND(URI(CONCAT("http://test.org/", ?amen3,?foret6)) AS ?amenagementEntity).
+    }    
+  }} 
